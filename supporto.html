@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #eef0f9; -webkit-font-smoothing: antialiased; }
+a { color: #3a3f6b; text-decoration: none; }
+a:hover { color: #1e2140; }
+</style>
+</helmet>
+<div style="font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, sans-serif; color: #1e2140; min-height: 100vh; background-color: #eef0f9; background-image: radial-gradient(90% 40% at 10% 0%, #b7cdee 0%, rgba(183,205,238,0) 60%), radial-gradient(85% 35% at 95% 6%, #dcc4ea 0%, rgba(220,196,234,0) 62%), radial-gradient(90% 34% at 100% 92%, #e0c8ec 0%, rgba(224,200,236,0) 60%), linear-gradient(180deg, #cdd5f0 0%, #ded4ee 20%, #eff0f8 48%, #e6dff2 100%); background-repeat: no-repeat; background-size: 100% 100%;">
+
+  <div style="max-width: 820px; margin: 0 auto; padding: 26px clamp(20px, 5vw, 48px) 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+    <a href="index.html" style="display: flex; align-items: center; gap: 12px;">
+      <img src="assets/icon.jpg" alt="FridgeUp!" style="width: 36px; height: 36px; border-radius: 10px; display: block;" />
+      <span style="font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #1e2140;">FridgeUp!</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 4px;">
+      <button type="button" onClick="{{ setEn }}" style="{{ pillEn }}">EN</button>
+      <button type="button" onClick="{{ setIt }}" style="{{ pillIt }}">IT</button>
+      <button type="button" onClick="{{ setDe }}" style="{{ pillDe }}">DE</button>
+    </div>
+  </div>
+
+  <div style="max-width: 820px; margin: 0 auto; padding: clamp(48px, 8vw, 84px) clamp(20px, 5vw, 48px) 0;">
+    <a href="index.html" style="font-size: 14.5px; color: #6a6f96;">{{ t.back }}</a>
+    <h1 style="margin: 16px 0 18px; font-size: clamp(34px, 5vw, 54px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 700;">{{ t.title }}</h1>
+    <p style="margin: 0 0 clamp(40px, 6vw, 60px); font-size: 18px; line-height: 1.55; color: #4a4f7a; max-width: 34em; text-wrap: pretty;">{{ t.intro }}</p>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="6">
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 18px; padding: 24px 24px 26px;">
+          <h2 style="margin: 0 0 9px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">{{ q.q }}</h2>
+          <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">{{ q.a }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin: clamp(48px, 6vw, 72px) 0 0; background: linear-gradient(160deg, #b9cdec 0%, #c6cdf0 45%, #ddc9ec 100%); border-radius: 24px; padding: clamp(30px, 4vw, 46px);">
+      <h2 style="margin: 0 0 10px; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.025em; font-weight: 700;">{{ t.contactTitle }}</h2>
+      <p style="margin: 0 0 24px; font-size: 16.5px; line-height: 1.5; color: #3a3f6b; max-width: 34em;">{{ t.contactBody }}</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="mailto:fridgeup.ios@gmail.com" style="display: inline-flex; align-items: center; background: #1e2140; color: #fff; border-radius: 13px; padding: 13px 20px; font-size: 15.5px; font-weight: 600;" style-hover="background: #2b2f5c; color: #fff;">iOS &mdash; fridgeup.ios@gmail.com</a>
+        <a href="mailto:fridgeup.android@gmail.com" style="display: inline-flex; align-items: center; border: 1px solid #1e2140; color: #1e2140; border-radius: 13px; padding: 13px 20px; font-size: 15.5px; font-weight: 600;" style-hover="background: #1e2140; color: #fff;">Android &mdash; fridgeup.android@gmail.com</a>
+      </div>
+    </div>
+
+    <div style="margin: 40px 0 60px; display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px;">
+      <a href="https://csigillo-ux.github.io/fridgeup-privacy/" target="_blank" rel="noopener">{{ t.privacy }}</a>
+      <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" target="_blank" rel="noopener">App Store</a>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;it&quot;,&quot;de&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Site&quot;}}">
+const S = {
+  en: {
+    back: "\u2190 Back to FridgeUp!", title: "Support",
+    intro: "FridgeUp! is made by one person. If something doesn't work, or you have an idea for the app, write to me \u2014 I read every message.",
+    contactTitle: "Still stuck?", contactBody: "Send an email with your device and iOS version, and a screenshot if you have one. It helps me find the problem faster.",
+    privacy: "Privacy policy",
+    faq: [
+      { q: "The scanner doesn't recognise my product", a: "Barcode databases don't cover everything, especially local or store brands. Add the product by hand and photograph the expiry date \u2014 the rest works the same." },
+      { q: "I'm not getting notifications", a: "Check that notifications are enabled for FridgeUp! in the iOS Settings, then in the app under Settings make sure \u201cEnable notifications\u201d is on and a reminder time is set." },
+      { q: "How do I restore my Pro purchase?", a: "Open the Pro screen in the app and tap \u201cRestore purchases\u201d. Pro is a one-time purchase tied to your Apple ID, so it works on your other devices too." },
+      { q: "iCloud isn't syncing", a: "iCloud sync is free for everyone. Make sure you're signed in to the same Apple ID on both devices and that iCloud Drive is on. It can take a minute after adding a product." },
+      { q: "Can I move a product between lists?", a: "Yes. Tap the product, then pick Fridge, Freezer or Pantry under \u201cMove to\u201d and save. Separate lists are a Pro feature." },
+      { q: "When is the Android version out?", a: "It's in the works. Write to fridgeup.android@gmail.com and I'll let you know when it's available." }
+    ]
+  },
+  it: {
+    back: "\u2190 Torna a FridgeUp!", title: "Supporto",
+    intro: "FridgeUp! \u00e8 fatto da una persona sola. Se qualcosa non funziona, o hai un'idea per l'app, scrivimi \u2014 leggo tutti i messaggi.",
+    contactTitle: "Non si risolve?", contactBody: "Mandami una mail con il modello del dispositivo, la versione di iOS e, se ce l'hai, uno screenshot. Mi aiuta a capire prima il problema.",
+    privacy: "Privacy policy",
+    faq: [
+      { q: "Lo scanner non riconosce il prodotto", a: "I database dei codici a barre non coprono tutto, soprattutto marche locali o del supermercato. Aggiungi il prodotto a mano e fotografa la data di scadenza: il resto funziona uguale." },
+      { q: "Non ricevo le notifiche", a: "Controlla che le notifiche siano attive per FridgeUp! nelle Impostazioni di iOS, poi nell'app in Impostazioni verifica che \u201cAttiva notifiche\u201d sia acceso e che ci sia un'ora impostata." },
+      { q: "Come recupero l'acquisto Pro?", a: "Apri la schermata Pro nell'app e tocca \u201cRipristina acquisti\u201d. Pro \u00e8 un acquisto unico legato al tuo ID Apple, quindi vale anche sugli altri tuoi dispositivi." },
+      { q: "iCloud non sincronizza", a: "La sincronizzazione iCloud \u00e8 gratuita per tutti. Assicurati di essere collegato allo stesso ID Apple sui due dispositivi e che iCloud Drive sia attivo. Dopo aver aggiunto un prodotto pu\u00f2 volerci un minuto." },
+      { q: "Posso spostare un prodotto tra le liste?", a: "S\u00ec. Tocca il prodotto, scegli Frigo, Freezer o Dispensa sotto \u201cSposta in\u201d e salva. Le liste separate sono una funzione Pro." },
+      { q: "Quando esce la versione Android?", a: "\u00c8 in lavorazione. Scrivi a fridgeup.android@gmail.com e ti avviso quando \u00e8 disponibile." }
+    ]
+  },
+  de: {
+    back: "\u2190 Zur\u00fcck zu FridgeUp!", title: "Support",
+    intro: "FridgeUp! wird von einer einzigen Person gemacht. Wenn etwas nicht funktioniert oder du eine Idee f\u00fcr die App hast, schreib mir \u2014 ich lese jede Nachricht.",
+    contactTitle: "Immer noch ein Problem?", contactBody: "Schreib mir eine E-Mail mit Ger\u00e4t und iOS-Version, und wenn m\u00f6glich einem Screenshot. So finde ich den Fehler schneller.",
+    privacy: "Datenschutz",
+    faq: [
+      { q: "Der Scanner erkennt mein Produkt nicht", a: "Barcode-Datenbanken enthalten nicht alles, vor allem keine lokalen oder Eigenmarken. F\u00fcge das Produkt manuell hinzu und fotografiere das Ablaufdatum \u2014 der Rest funktioniert genauso." },
+      { q: "Ich bekomme keine Benachrichtigungen", a: "Pr\u00fcfe in den iOS-Einstellungen, ob Benachrichtigungen f\u00fcr FridgeUp! erlaubt sind. Stelle dann in der App unter Einstellungen sicher, dass \u201eBenachrichtigungen aktivieren\u201c an ist und eine Uhrzeit gesetzt ist." },
+      { q: "Wie stelle ich meinen Pro-Kauf wieder her?", a: "\u00d6ffne in der App den Pro-Bereich und tippe auf \u201eK\u00e4ufe wiederherstellen\u201c. Pro ist ein Einmalkauf, der an deine Apple-ID gebunden ist \u2014 er gilt auch auf deinen anderen Ger\u00e4ten." },
+      { q: "iCloud synchronisiert nicht", a: "Die iCloud-Synchronisierung ist f\u00fcr alle kostenlos. Achte darauf, dass du auf beiden Ger\u00e4ten mit derselben Apple-ID angemeldet bist und iCloud Drive aktiv ist. Nach dem Hinzuf\u00fcgen kann es eine Minute dauern." },
+      { q: "Kann ich ein Produkt zwischen Listen verschieben?", a: "Ja. Tippe auf das Produkt, w\u00e4hle unter \u201eVerschieben nach\u201c K\u00fchlschrank, Gefrierfach oder Vorrat und speichere. Getrennte Listen sind eine Pro-Funktion." },
+      { q: "Wann kommt die Android-Version?", a: "Sie ist in Arbeit. Schreib an fridgeup.android@gmail.com, dann melde ich mich, sobald sie verf\u00fcgbar ist." }
+    ]
+  }
+};
+
+const PILL_ON = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "#eceaf6", color: "#1e2140", fontSize: "13px", fontWeight: 600, fontFamily: "inherit", cursor: "pointer" };
+const PILL_OFF = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "transparent", color: "#6a6f96", fontSize: "13px", fontWeight: 500, fontFamily: "inherit", cursor: "pointer" };
+
+class Component extends DCLogic {
+  state = { lang: null };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem("fridgeup-site-lang");
+      if (saved && S[saved]) this.setState({ lang: saved });
+    } catch (e) {}
+  }
+
+  pick(lang) {
+    this.setState({ lang });
+    try { localStorage.setItem("fridgeup-site-lang", lang); } catch (e) {}
+  }
+
+  renderVals() {
+    const lang = this.state.lang || this.props.defaultLang || "en";
+    const t = S[lang] || S.en;
+    return {
+      lang, t, faq: t.faq,
+      setEn: () => this.pick("en"),
+      setIt: () => this.pick("it"),
+      setDe: () => this.pick("de"),
+      pillEn: lang === "en" ? PILL_ON : PILL_OFF,
+      pillIt: lang === "it" ? PILL_ON : PILL_OFF,
+      pillDe: lang === "de" ? PILL_ON : PILL_OFF
+    };
+  }
+}
+
+</script>
+</body>
+</html>
