@@ -91,7 +91,7 @@ html { scroll-behavior: smooth; }
   <div id="features" style="max-width: 1180px; margin: 0 auto; padding: clamp(90px, 12vw, 150px) clamp(20px, 5vw, 48px) 0;">
     <h2 style="margin: 0 0 14px; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700; max-width: 22em;">{{ t.featTitle }}</h2>
     <p style="margin: 0 0 clamp(36px, 5vw, 54px); font-size: 18px; line-height: 1.5; color: #4a4f7a; max-width: 34em;">{{ t.featBody }}</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; align-items: stretch;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 18px;">
       <sc-for list="{{ features }}" as="f" hint-placeholder-count="5">
         <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
@@ -189,19 +189,38 @@ html { scroll-behavior: smooth; }
       <span style="font-size: 14.5px; color: #6a6f96;">{{ t.revNote }}</span>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px;">
-      <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
-        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
-            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">{{ r.stars }}</span>
-            <span style="font-size: 13px; color: #6a6f96;">{{ r.by }}</span>
-          </div>
-          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">{{ r.title }}</h3>
-          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">{{ r.body }}</p>
-          <sc-if value="{{ r.translated }}" hint-placeholder-val="{{ false }}">
-            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">{{ r.note }}</p>
-          </sc-if>
+      <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★★</span>
+          <span style="font-size: 13px; color: #6a6f96;">LFischer! · 8 Jul</span>
         </div>
-      </sc-for>
+        <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Praktisch, übersichtlich und wirklich hilfreich!</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Diese App ist eine tolle Idee und hervorragend umgesetzt. Sie ist einfach zu bedienen, übersichtlich gestaltet und hilft dabei, Lebensmittel besser zu organisieren und unnötige Verschwendung zu vermeiden. Besonders die Erinnerungen an ablaufende Produkte sind im Alltag sehr praktisch. Man merkt, dass viel Arbeit und Herzblut in die Entwicklung geflossen sind. Ich freue mich schon auf zukünftige Updates und kann die App jedem empfehlen!</p>
+      </div>
+      <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★<span style="color: #d9d6e6;">★</span></span>
+          <span style="font-size: 13px; color: #6a6f96;">Janini.bini · 11 Aug</span>
+        </div>
+        <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Toll!</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Einfach zu bedienen! Tolle scanner funktion. Folgender Verbesserungsvorschlag: Familiefreigabe :)</p>
+      </div>
+      <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 13px; color: #6a6f96;">Skizzetta68 &middot; 17 lug</span>
+        </div>
+        <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Wow</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Bellissima app! Fa davvero bene il suo lavoro. La grafica &egrave; molto bella, pulita e intuitiva, e si usa senza difficolt&agrave;. Mi &egrave; piaciuta fin dal primo utilizzo.</p>
+      </div>
+      <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span style="font-size: 13px; color: #6a6f96;">Prome85 &middot; 25 lug</span>
+        </div>
+        <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Ottima</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Idea veramente brillante, semplice, ma non scontata.</p>
+      </div>
     </div>
   </div>
 
@@ -245,7 +264,7 @@ html { scroll-behavior: smooth; }
         <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">{{ t.footLinks }}</h3>
         <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
           <a href="supporto.html">{{ t.footSupport }}</a>
-          <a href="https://csigillo-ux.github.io/fridgeup-privacy/" target="_blank" rel="noopener">{{ t.footPrivacy }}</a>
+          <a href="https://csigillo-ux.github.io/FridgeUp-privacy/" target="_blank" rel="noopener">{{ t.footPrivacy }}</a>
           <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" target="_blank" rel="noopener">{{ t.footStore }}</a>
         </div>
       </div>
@@ -398,31 +417,6 @@ const S = {
   }
 };
 
-const REVIEWS = [
-  { lang: "de", by: "LFischer! \u00b7 8 Jul", stars: 5,
-    de: { title: "Praktisch, \u00fcbersichtlich und wirklich hilfreich!", body: "Diese App ist eine tolle Idee und hervorragend umgesetzt. Sie ist einfach zu bedienen, \u00fcbersichtlich gestaltet und hilft dabei, Lebensmittel besser zu organisieren und unn\u00f6tige Verschwendung zu vermeiden. Besonders die Erinnerungen an ablaufende Produkte sind im Alltag sehr praktisch. Man merkt, dass viel Arbeit und Herzblut in die Entwicklung geflossen sind. Ich freue mich schon auf zuk\u00fcnftige Updates und kann die App jedem empfehlen!" },
-    en: { title: "Practical, clear and genuinely helpful!", body: "This app is a great idea and beautifully done. It's easy to use, clearly laid out, and helps you organise food better and avoid unnecessary waste. The reminders for products about to expire are especially useful day to day. You can tell a lot of work and care went into it. I'm looking forward to future updates and can recommend the app to anyone!" },
-    it: { title: "Pratica, chiara e davvero utile!", body: "Questa app \u00e8 un'ottima idea, realizzata benissimo. \u00c8 semplice da usare, ben organizzata e aiuta a gestire meglio il cibo evitando sprechi inutili. Soprattutto i promemoria sui prodotti in scadenza sono comodissimi ogni giorno. Si vede che dietro c'\u00e8 molto lavoro e passione. Aspetto con piacere i prossimi aggiornamenti e la consiglio a tutti!" } },
-  { lang: "de", by: "Janini.bini \u00b7 11 Aug", stars: 4,
-    de: { title: "Toll!", body: "Einfach zu bedienen! Tolle scanner funktion. Folgender Verbesserungsvorschlag: Familiefreigabe :)" },
-    en: { title: "Great!", body: "Easy to use! Great scanner function. One suggestion for improvement: family sharing :)" },
-    it: { title: "Ottima!", body: "Facile da usare! Ottima la funzione scanner. Un suggerimento: la condivisione in famiglia :)" } },
-  { lang: "it", by: "Skizzetta68 \u00b7 17 lug", stars: 5,
-    it: { title: "Wow", body: "Bellissima app! Fa davvero bene il suo lavoro. La grafica \u00e8 molto bella, pulita e intuitiva, e si usa senza difficolt\u00e0. Mi \u00e8 piaciuta fin dal primo utilizzo." },
-    en: { title: "Wow", body: "Lovely app! It really does its job well. The design is beautiful, clean and intuitive, and it's easy to use. I liked it from the very first time." },
-    de: { title: "Wow", body: "Sch\u00f6ne App! Sie macht ihre Sache wirklich gut. Das Design ist h\u00fcbsch, klar und intuitiv, die Bedienung f\u00e4llt leicht. Sie hat mir vom ersten Mal an gefallen." } },
-  { lang: "it", by: "Terence Lionel \u00b7 8 set", stars: 5,
-    it: { title: "Un'applicazione fantastica", body: "Un'applicazione fantastica da quando la uso non ho pi\u00f9 buttato via nessuna derrata! La consiglio vivamente" },
-    en: { title: "A fantastic app", body: "A fantastic app \u2014 since I started using it I haven't thrown away a single item of food! Highly recommended." },
-    de: { title: "Eine fantastische App", body: "Eine fantastische App \u2014 seit ich sie benutze, habe ich kein einziges Lebensmittel mehr weggeworfen! Sehr zu empfehlen." } }
-];
-
-const TRANS_NOTE = {
-  en: { de: "Translated from German", it: "Translated from Italian" },
-  it: { de: "Tradotta dal tedesco", it: "" },
-  de: { it: "Aus dem Italienischen \u00fcbersetzt", de: "" }
-};
-
 const PILL_ON = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "rgba(255,255,255,0.78)", color: "#1e2140", fontSize: "13px", fontWeight: 600, fontFamily: "inherit", cursor: "pointer" };
 const PILL_OFF = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "transparent", color: "#6a6f96", fontSize: "13px", fontWeight: 500, fontFamily: "inherit", cursor: "pointer" };
 
@@ -456,18 +450,6 @@ class Component extends DCLogic {
     const t = S[lang] || S.en;
     return {
       lang, t,
-      reviews: REVIEWS.map(r => {
-        const copy = r[lang] || r.en || r[r.lang];
-        const translated = r.lang !== lang;
-        return {
-          by: r.by,
-          stars: "\u2605".repeat(r.stars) + "\u2606".repeat(5 - r.stars),
-          title: copy.title,
-          body: copy.body,
-          translated: translated,
-          note: translated ? ((TRANS_NOTE[lang] || TRANS_NOTE.en)[r.lang] || "") : ""
-        };
-      }),
       isWide: !this.state.narrow,
       heroMainStyle: this.state.narrow
         ? "width: 78%; max-width: 340px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; filter: drop-shadow(0 30px 60px rgba(30,33,64,0.2));"
