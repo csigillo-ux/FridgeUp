@@ -690,7 +690,7 @@ class Component extends DCLogic {
       badgeApple: "assets/appstore-" + (S[lang] ? lang : "en") + ".svg",
       badgeGoogle: "assets/googleplay-" + (S[lang] ? lang : "en") + ".svg",
       features: (this.props.showProFeatures === false) ? t.features.filter(f => f.tag !== "Pro") : t.features,
-      steps: t.steps.map((s, i) => Object.assign({}, s, { indent: this.state.narrow ? "0px" : (["0px", "clamp(16px, 5vw, 72px)", "clamp(32px, 10vw, 144px)"][i] || "0px") })),
+      steps: t.steps.map((s, i) => Object.assign({}, s, { indent: this.state.narrow ? (["0px", "14px", "28px"][i] || "0px") : (["0px", "clamp(16px, 5vw, 72px)", "clamp(32px, 10vw, 144px)"][i] || "0px") })),
       proItems: t.proItems,
       cap1: t.screens[0].caption,
       cap2: t.screens[1].caption,
