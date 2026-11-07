@@ -59,7 +59,7 @@ html { scroll-behavior: smooth; }
       </div>
       <h1 style="margin: 0 0 clamp(28px, 3.2vw, 42px); font-size: clamp(38px, 6.2vw, 74px); line-height: 0.99; letter-spacing: -0.04em; font-weight: 700; text-wrap: balance;">{{ t.heroTitle }}</h1>
       <p style="margin: 0 auto clamp(44px, 5.2vw, 68px); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6; max-width: 33em; color: #4a4f7a; text-wrap: pretty;">{{ t.heroBody }}</p>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px;">
+      <div style="{{ heroCtaStyle }}">
         <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" aria-label="{{ t.cta }}" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
           <img src="{{ badgeApple }}" alt="{{ t.cta }}" style="display: block; height: 58px; width: auto;" />
         </a>
@@ -676,8 +676,11 @@ class Component extends DCLogic {
       }),
       isWide: !this.state.narrow,
       heroMainStyle: this.state.narrow
-        ? "width: 78%; max-width: 340px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; filter: drop-shadow(0 30px 60px rgba(30,33,64,0.2));"
+        ? "width: 78%; max-width: 340px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; filter: drop-shadow(0 30px 60px rgba(30,33,64,0.2)); -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%); mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);"
         : "width: 34%; max-width: 400px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; filter: drop-shadow(0 30px 60px rgba(30,33,64,0.2));",
+      heroCtaStyle: this.state.narrow
+        ? "display: flex; flex-direction: column; align-items: center; gap: 20px;"
+        : "display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px;",
       galleryStyle: this.state.narrow
         ? "display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 calc(-1 * clamp(20px, 5vw, 48px)); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);"
         : "display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: clamp(16px, 2.5vw, 30px);",
