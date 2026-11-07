@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>FridgeUp!</title>
+<style>
+body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #eef0f9; font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1e2140; text-align: center; }
+a { color: #3a3f6b; }
+p { margin: 10px 0; font-size: 17px; }
+</style>
+<script>
+(function () {
+  var ua = navigator.userAgent || "";
+  var target = "/";
+  if (/android/i.test(ua)) {
+    target = "https://play.google.com/store/apps/details?id=com.csigillo.fridgeup";
+  } else if (/iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+    target = "https://apps.apple.com/app/id6779924343";
+  }
+  window.location.replace(target);
+})();
+</script>
+</head>
+<body>
+<div>
+  <p><strong>FridgeUp!</strong></p>
+  <p><a href="https://apps.apple.com/app/id6779924343">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup">Google Play</a></p>
+  <p><a href="/">fridgeup.app</a></p>
+</div>
+</body>
+</html>
