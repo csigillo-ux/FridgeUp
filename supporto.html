@@ -8,6 +8,9 @@
 <body>
 <x-dc>
 <helmet>
+<title>FridgeUp! &mdash; Support</title>
+<meta name="description" content="Help and frequently asked questions about FridgeUp!, the app that tracks expiry dates on iOS and Android." />
+<link rel="icon" href="assets/icon.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -28,6 +31,9 @@ a:hover { color: #1e2140; }
       <button type="button" onClick="{{ setEn }}" style="{{ pillEn }}">EN</button>
       <button type="button" onClick="{{ setIt }}" style="{{ pillIt }}">IT</button>
       <button type="button" onClick="{{ setDe }}" style="{{ pillDe }}">DE</button>
+        <button type="button" onClick="{{ setFr }}" style="{{ pillFr }}">FR</button>
+        <button type="button" onClick="{{ setEs }}" style="{{ pillEs }}">ES</button>
+        <button type="button" onClick="{{ setPt }}" style="{{ pillPt }}">PT</button>
     </div>
   </div>
 
@@ -57,12 +63,13 @@ a:hover { color: #1e2140; }
     <div style="margin: 40px 0 60px; display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px;">
       <a href="https://csigillo-ux.github.io/fridgeup-privacy/" target="_blank" rel="noopener">{{ t.privacy }}</a>
       <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" target="_blank" rel="noopener">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" target="_blank" rel="noopener">Google Play</a>
     </div>
   </div>
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;it&quot;,&quot;de&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Site&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;it&quot;,&quot;de&quot;,&quot;fr&quot;,&quot;es&quot;,&quot;pt&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Site&quot;}}">
 const S = {
   en: {
     back: "\u2190 Back to FridgeUp!", title: "Support",
@@ -73,9 +80,10 @@ const S = {
       { q: "The scanner doesn't recognise my product", a: "Barcode databases don't cover everything, especially local or store brands. Add the product by hand and photograph the expiry date \u2014 the rest works the same." },
       { q: "I'm not getting notifications", a: "Check that notifications are enabled for FridgeUp! in the iOS Settings, then in the app under Settings make sure \u201cEnable notifications\u201d is on and a reminder time is set." },
       { q: "How do I restore my Pro purchase?", a: "Open the Pro screen in the app and tap \u201cRestore purchases\u201d. Pro is a one-time purchase tied to your Apple ID, so it works on your other devices too." },
-      { q: "iCloud isn't syncing", a: "iCloud sync is free for everyone. Make sure you're signed in to the same Apple ID on both devices and that iCloud Drive is on. It can take a minute after adding a product." },
+      { q: "iCloud isn't syncing (iOS)", a: "iCloud sync is free for everyone. Make sure you're signed in to the same Apple ID on both devices and that iCloud Drive is on. It can take a minute after adding a product." },
       { q: "Can I move a product between lists?", a: "Yes. Tap the product, then pick Fridge, Freezer or Pantry under \u201cMove to\u201d and save. Separate lists are a Pro feature." },
-      { q: "When is the Android version out?", a: "It's in the works. Write to fridgeup.android@gmail.com and I'll let you know when it's available." }
+      { q: "Is there an Android version?", a: "Yes, FridgeUp! is on Google Play. If something doesn't work on Android, write to fridgeup.android@gmail.com." },
+      { q: "Does barcode scanning work without internet?", a: "Partly. The first time you scan a new barcode, FridgeUp! looks up the product name online. After that it remembers the name on your phone and recognises the same barcode even without a connection. If a product isn't found, type the name once and it's remembered too. On iOS these names sync between your devices through iCloud; on Android they stay on the device." }
     ]
   },
   it: {
@@ -87,9 +95,10 @@ const S = {
       { q: "Lo scanner non riconosce il prodotto", a: "I database dei codici a barre non coprono tutto, soprattutto marche locali o del supermercato. Aggiungi il prodotto a mano e fotografa la data di scadenza: il resto funziona uguale." },
       { q: "Non ricevo le notifiche", a: "Controlla che le notifiche siano attive per FridgeUp! nelle Impostazioni di iOS, poi nell'app in Impostazioni verifica che \u201cAttiva notifiche\u201d sia acceso e che ci sia un'ora impostata." },
       { q: "Come recupero l'acquisto Pro?", a: "Apri la schermata Pro nell'app e tocca \u201cRipristina acquisti\u201d. Pro \u00e8 un acquisto unico legato al tuo ID Apple, quindi vale anche sugli altri tuoi dispositivi." },
-      { q: "iCloud non sincronizza", a: "La sincronizzazione iCloud \u00e8 gratuita per tutti. Assicurati di essere collegato allo stesso ID Apple sui due dispositivi e che iCloud Drive sia attivo. Dopo aver aggiunto un prodotto pu\u00f2 volerci un minuto." },
+      { q: "iCloud non sincronizza (iOS)", a: "La sincronizzazione iCloud \u00e8 gratuita per tutti. Assicurati di essere collegato allo stesso ID Apple sui due dispositivi e che iCloud Drive sia attivo. Dopo aver aggiunto un prodotto pu\u00f2 volerci un minuto." },
       { q: "Posso spostare un prodotto tra le liste?", a: "S\u00ec. Tocca il prodotto, scegli Frigo, Freezer o Dispensa sotto \u201cSposta in\u201d e salva. Le liste separate sono una funzione Pro." },
-      { q: "Quando esce la versione Android?", a: "\u00c8 in lavorazione. Scrivi a fridgeup.android@gmail.com e ti avviso quando \u00e8 disponibile." }
+      { q: "Esiste una versione Android?", a: "S\u00ec, FridgeUp! \u00e8 su Google Play. Se qualcosa non funziona su Android, scrivi a fridgeup.android@gmail.com." },
+      { q: "Il codice a barre funziona senza internet?", a: "In parte. La prima volta che scansioni un codice nuovo, FridgeUp! cerca il nome del prodotto online. Poi lo ricorda sul tuo telefono e riconosce lo stesso codice anche senza connessione. Se il prodotto non viene trovato, scrivi il nome una volta e viene ricordato anche quello. Su iOS i nomi si sincronizzano tra i tuoi dispositivi con iCloud; su Android restano sul dispositivo." }
     ]
   },
   de: {
@@ -101,9 +110,55 @@ const S = {
       { q: "Der Scanner erkennt mein Produkt nicht", a: "Barcode-Datenbanken enthalten nicht alles, vor allem keine lokalen oder Eigenmarken. F\u00fcge das Produkt manuell hinzu und fotografiere das Ablaufdatum \u2014 der Rest funktioniert genauso." },
       { q: "Ich bekomme keine Benachrichtigungen", a: "Pr\u00fcfe in den iOS-Einstellungen, ob Benachrichtigungen f\u00fcr FridgeUp! erlaubt sind. Stelle dann in der App unter Einstellungen sicher, dass \u201eBenachrichtigungen aktivieren\u201c an ist und eine Uhrzeit gesetzt ist." },
       { q: "Wie stelle ich meinen Pro-Kauf wieder her?", a: "\u00d6ffne in der App den Pro-Bereich und tippe auf \u201eK\u00e4ufe wiederherstellen\u201c. Pro ist ein Einmalkauf, der an deine Apple-ID gebunden ist \u2014 er gilt auch auf deinen anderen Ger\u00e4ten." },
-      { q: "iCloud synchronisiert nicht", a: "Die iCloud-Synchronisierung ist f\u00fcr alle kostenlos. Achte darauf, dass du auf beiden Ger\u00e4ten mit derselben Apple-ID angemeldet bist und iCloud Drive aktiv ist. Nach dem Hinzuf\u00fcgen kann es eine Minute dauern." },
+      { q: "iCloud synchronisiert nicht (iOS)", a: "Die iCloud-Synchronisierung ist f\u00fcr alle kostenlos. Achte darauf, dass du auf beiden Ger\u00e4ten mit derselben Apple-ID angemeldet bist und iCloud Drive aktiv ist. Nach dem Hinzuf\u00fcgen kann es eine Minute dauern." },
       { q: "Kann ich ein Produkt zwischen Listen verschieben?", a: "Ja. Tippe auf das Produkt, w\u00e4hle unter \u201eVerschieben nach\u201c K\u00fchlschrank, Gefrierfach oder Vorrat und speichere. Getrennte Listen sind eine Pro-Funktion." },
-      { q: "Wann kommt die Android-Version?", a: "Sie ist in Arbeit. Schreib an fridgeup.android@gmail.com, dann melde ich mich, sobald sie verf\u00fcgbar ist." }
+      { q: "Gibt es eine Android-Version?", a: "Ja, FridgeUp! ist bei Google Play erh\u00e4ltlich. Wenn auf Android etwas nicht funktioniert, schreib an fridgeup.android@gmail.com." },
+      { q: "Funktioniert der Barcode-Scan ohne Internet?", a: "Teilweise. Beim ersten Scan eines neuen Barcodes sucht FridgeUp! den Produktnamen online. Danach merkt sich die App den Namen auf deinem Handy und erkennt denselben Barcode auch ohne Verbindung. Wird ein Produkt nicht gefunden, gib den Namen einmal ein – auch er wird gemerkt. Auf iOS werden die Namen per iCloud zwischen deinen Geräten synchronisiert; auf Android bleiben sie auf dem Gerät." }
+    ]
+  },
+  fr: {
+    back: "\u2190 Retour à FridgeUp!", title: "Assistance",
+    intro: "FridgeUp! est fait par une seule personne. Si quelque chose ne fonctionne pas, ou si tu as une idée pour l'app, écris-moi — je lis tous les messages.",
+    contactTitle: "Toujours bloqué ?", contactBody: "Envoie-moi un e-mail avec ton appareil et sa version d'iOS, et une capture d'écran si tu en as une. Ça m'aide à trouver le problème plus vite.",
+    privacy: "Politique de confidentialité",
+    faq: [
+      { q: "Le scanner ne reconnaît pas mon produit", a: "Les bases de données de codes-barres ne couvrent pas tout, surtout les marques locales ou de distributeur. Ajoute le produit à la main et photographie la date de péremption — le reste fonctionne pareil." },
+      { q: "Je ne reçois pas de notifications", a: "Vérifie que les notifications sont activées pour FridgeUp! dans les Réglages d'iOS, puis, dans l'app, sous Réglages, assure-toi que « Activer les notifications » est coché et qu'une heure de rappel est définie." },
+      { q: "Comment restaurer mon achat Pro ?", a: "Ouvre l'écran Pro dans l'app et touche « Restaurer les achats ». Pro est un achat unique lié à ton identifiant Apple, il fonctionne donc aussi sur tes autres appareils." },
+      { q: "iCloud ne se synchronise pas (iOS)", a: "La synchronisation iCloud est gratuite pour tous. Vérifie que tu es connecté avec le même identifiant Apple sur les deux appareils et qu'iCloud Drive est activé. Après l'ajout d'un produit, cela peut prendre une minute." },
+      { q: "Puis-je déplacer un produit d'une liste à l'autre ?", a: "Oui. Touche le produit, choisis Frigo, Congélateur ou Garde-manger sous « Déplacer vers » et enregistre. Les listes séparées sont une fonction Pro." },
+      { q: "Existe-t-il une version Android ?", a: "Oui, FridgeUp! est sur Google Play. Si quelque chose ne fonctionne pas sur Android, écris à fridgeup.android@gmail.com." },
+      { q: "Le scan du code-barres fonctionne-t-il sans internet ?", a: "En partie. La première fois que tu scannes un nouveau code-barres, FridgeUp! cherche le nom du produit en ligne. Ensuite, il s'en souvient sur ton téléphone et reconnaît le même code-barres même sans connexion. Si le produit n'est pas trouvé, saisis le nom une fois : il sera lui aussi mémorisé. Sur iOS, ces noms se synchronisent entre tes appareils via iCloud ; sur Android, ils restent sur l'appareil." }
+    ]
+  },
+  es: {
+    back: "\u2190 Volver a FridgeUp!", title: "Soporte",
+    intro: "FridgeUp! lo hace una sola persona. Si algo no funciona, o tienes una idea para la app, escríbeme — leo todos los mensajes.",
+    contactTitle: "¿Sigues atascado?", contactBody: "Envíame un correo con tu dispositivo y la versión de iOS, y una captura de pantalla si la tienes. Me ayuda a encontrar el problema más rápido.",
+    privacy: "Política de privacidad",
+    faq: [
+      { q: "El escáner no reconoce mi producto", a: "Las bases de datos de códigos de barras no lo cubren todo, sobre todo marcas locales o del supermercado. Añade el producto a mano y fotografía la fecha de caducidad — el resto funciona igual." },
+      { q: "No recibo notificaciones", a: "Comprueba que las notificaciones estén activadas para FridgeUp! en los Ajustes de iOS y, en la app, en Ajustes, asegúrate de que «Activar notificaciones» esté activado y de que haya una hora configurada." },
+      { q: "¿Cómo restauro mi compra Pro?", a: "Abre la pantalla Pro de la app y toca «Restaurar compras». Pro es una compra única vinculada a tu ID de Apple, así que también vale en tus otros dispositivos." },
+      { q: "iCloud no sincroniza (iOS)", a: "La sincronización con iCloud es gratuita para todos. Asegúrate de haber iniciado sesión con el mismo ID de Apple en ambos dispositivos y de que iCloud Drive esté activado. Tras añadir un producto puede tardar un minuto." },
+      { q: "¿Puedo mover un producto entre listas?", a: "Sí. Toca el producto, elige Nevera, Congelador o Despensa en «Mover a» y guarda. Las listas separadas son una función Pro." },
+      { q: "¿Hay versión para Android?", a: "Sí, FridgeUp! está en Google Play. Si algo no funciona en Android, escribe a fridgeup.android@gmail.com." },
+      { q: "¿El escaneo de códigos de barras funciona sin internet?", a: "En parte. La primera vez que escaneas un código nuevo, FridgeUp! busca el nombre del producto en línea. Después lo recuerda en tu teléfono y reconoce el mismo código aunque no tengas conexión. Si no encuentra el producto, escribe el nombre una vez y también se recordará. En iOS estos nombres se sincronizan entre tus dispositivos con iCloud; en Android se quedan en el dispositivo." }
+    ]
+  },
+  pt: {
+    back: "\u2190 Voltar ao FridgeUp!", title: "Suporte",
+    intro: "O FridgeUp! é feito por uma só pessoa. Se algo não funcionar, ou tiveres uma ideia para a app, escreve-me — leio todas as mensagens.",
+    contactTitle: "Continuas com problemas?", contactBody: "Envia-me um e-mail com o teu dispositivo e a versão do iOS, e uma captura de ecrã, se tiveres. Ajuda-me a encontrar o problema mais depressa.",
+    privacy: "Política de privacidade",
+    faq: [
+      { q: "O leitor não reconhece o meu produto", a: "As bases de dados de códigos de barras não cobrem tudo, sobretudo marcas locais ou de supermercado. Adiciona o produto manualmente e fotografa a data de validade — o resto funciona igual." },
+      { q: "Não recebo notificações", a: "Verifica se as notificações estão ativas para o FridgeUp! nas Definições do iOS e, na app, em Definições, confirma que «Ativar notificações» está ligado e que há uma hora definida." },
+      { q: "Como restauro a minha compra Pro?", a: "Abre o ecrã Pro na app e toca em «Restaurar compras». O Pro é uma compra única associada ao teu ID Apple, por isso também funciona nos teus outros dispositivos." },
+      { q: "O iCloud não sincroniza (iOS)", a: "A sincronização iCloud é gratuita para todos. Confirma que tens a sessão iniciada com o mesmo ID Apple nos dois dispositivos e que o iCloud Drive está ativo. Depois de adicionares um produto pode demorar um minuto." },
+      { q: "Posso mover um produto entre listas?", a: "Sim. Toca no produto, escolhe Frigorífico, Congelador ou Despensa em «Mover para» e guarda. As listas separadas são uma funcionalidade Pro." },
+      { q: "Existe versão para Android?", a: "Sim, o FridgeUp! está no Google Play. Se algo não funcionar no Android, escreve para fridgeup.android@gmail.com." },
+      { q: "A leitura do código de barras funciona sem internet?", a: "Em parte. Da primeira vez que lês um código novo, o FridgeUp! procura o nome do produto online. Depois fica a lembrar-se dele no teu telemóvel e reconhece o mesmo código mesmo sem ligação. Se o produto não for encontrado, escreve o nome uma vez e ele também fica guardado. No iOS, estes nomes sincronizam entre os teus dispositivos através do iCloud; no Android ficam no dispositivo." }
     ]
   }
 };
@@ -134,9 +189,15 @@ class Component extends DCLogic {
       setEn: () => this.pick("en"),
       setIt: () => this.pick("it"),
       setDe: () => this.pick("de"),
+      setFr: () => this.pick("fr"),
+      setEs: () => this.pick("es"),
+      setPt: () => this.pick("pt"),
       pillEn: lang === "en" ? PILL_ON : PILL_OFF,
       pillIt: lang === "it" ? PILL_ON : PILL_OFF,
-      pillDe: lang === "de" ? PILL_ON : PILL_OFF
+      pillDe: lang === "de" ? PILL_ON : PILL_OFF,
+      pillFr: lang === "fr" ? PILL_ON : PILL_OFF,
+      pillEs: lang === "es" ? PILL_ON : PILL_OFF,
+      pillPt: lang === "pt" ? PILL_ON : PILL_OFF
     };
   }
 }
