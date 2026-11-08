@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>FridgeUp! &mdash; Track expiry dates, waste less food</title>
+<meta name="description" content="FridgeUp! keeps track of expiry dates and warns you before food goes bad. Scan a barcode or photograph the date. Free on iOS and Android." />
+<link rel="icon" href="assets/icon.jpg" />
+<link rel="apple-touch-icon" href="assets/icon.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FridgeUp! &mdash; No more food thrown away because you forgot" />
+<meta property="og:description" content="Expiry dates tracked, notifications in time. Free on iOS and Android." />
+<meta property="og:image" content="https://fridgeup.app/assets/og-image.jpg" />
+<meta property="og:url" content="https://fridgeup.app/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #f6f5fb; -webkit-font-smoothing: antialiased; }
+a { color: #3a3f6b; text-decoration: none; }
+a:hover { color: #1e2140; }
+html { scroll-behavior: smooth; }
+</style>
+</helmet>
+<div style="font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, sans-serif; color: #1e2140; background-color: #eef0f9; background-image: radial-gradient(90% 40% at 10% 0%, #b7cdee 0%, rgba(183,205,238,0) 60%), radial-gradient(85% 35% at 95% 6%, #dcc4ea 0%, rgba(220,196,234,0) 62%), radial-gradient(80% 30% at 0% 62%, #cfe0f0 0%, rgba(207,224,240,0) 58%), radial-gradient(90% 34% at 100% 88%, #e0c8ec 0%, rgba(224,200,236,0) 60%), linear-gradient(180deg, #cdd5f0 0%, #ded4ee 18%, #eff0f8 42%, #eaeef8 70%, #e6dff2 100%); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+
+  <div style="max-width: 1180px; margin: 0 auto; padding: 26px clamp(20px, 5vw, 48px) 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+      <img src="assets/icon.jpg" alt="FridgeUp!" style="width: 40px; height: 40px; border-radius: 11px; display: block;">
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #1e2140;">FridgeUp!</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+      <a href="#features">{{ t.navFeatures }}</a>
+      <a href="#how">{{ t.navHow }}</a>
+      <a href="#pro">{{ t.navPro }}</a>
+      <a href="#story">{{ t.navStory }}</a>
+      <div style="display: flex; align-items: center; gap: 4px; margin-left: 4px;">
+        <button type="button" onClick="{{ setEn }}" style="{{ pillEn }}">EN</button>
+        <button type="button" onClick="{{ setIt }}" style="{{ pillIt }}">IT</button>
+        <button type="button" onClick="{{ setDe }}" style="{{ pillDe }}">DE</button>
+        <button type="button" onClick="{{ setFr }}" style="{{ pillFr }}">FR</button>
+        <button type="button" onClick="{{ setEs }}" style="{{ pillEs }}">ES</button>
+        <button type="button" onClick="{{ setPt }}" style="{{ pillPt }}">PT</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="top" style="padding: clamp(56px, 9vw, 104px) clamp(20px, 5vw, 48px) 64px; overflow: hidden; overflow-x: clip; overflow-y: visible;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <div style="display: inline-flex; align-items: center; gap: 9px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.72); font-size: 13px; font-weight: 500; color: #3a3f6b; margin-bottom: clamp(30px, 3.8vw, 48px);">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #2f9e57;"></span>
+        <span>{{ t.heroBadge }}</span>
+      </div>
+      <h1 style="margin: 0 0 clamp(28px, 3.2vw, 42px); font-size: clamp(38px, 6.2vw, 74px); line-height: 0.99; letter-spacing: -0.04em; font-weight: 700; text-wrap: balance;">{{ t.heroTitle }}</h1>
+      <p style="margin: 0 auto clamp(44px, 5.2vw, 68px); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6; max-width: 33em; color: #4a4f7a; text-wrap: pretty;">{{ t.heroBody }}</p>
+      <div style="{{ heroCtaStyle }}">
+        <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" aria-label="{{ t.cta }}" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+          <img src="{{ badgeApple }}" alt="{{ t.cta }}" style="display: block; height: 58px; width: auto;" />
+        </a>
+        <span style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,0.8); font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: #1e2140;">{{ t.ctaNote }}</span>
+        <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+          <img src="{{ badgeGoogle }}" alt="{{ t.gplay }}" style="display: block; height: 58px; width: auto;" />
+        </a>
+      </div>
+    </div>
+    <div style="margin: clamp(48px, 7vw, 76px) auto 0; max-width: 1180px; display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 2vw, 26px);">
+      <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+        <div style="width: 28%; max-width: 320px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; transform: translateY(34px) rotate(-3deg); filter: drop-shadow(0 24px 44px rgba(30,33,64,0.16));">
+          <img src="assets/shot-scan.jpg" alt="Scan barcodes and dates" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+        </div>
+      </sc-if>
+      <div style="{{ heroMainStyle }}">
+        <img src="assets/shot-expiry.jpg" alt="Never miss an expiry date" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+      </div>
+      <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+        <div style="width: 28%; max-width: 320px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; transform: translateY(34px) rotate(3deg); filter: drop-shadow(0 24px 44px rgba(30,33,64,0.16));">
+          <img src="assets/shot-notifications.jpg" alt="Smart notifications" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(48px, 6vw, 72px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 36px;">
+      <sc-for list="{{ trust }}" as="tr" hint-placeholder-count="3">
+        <li style="display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: #3a3f6b;">
+          <span style="color: #2f9e57; font-weight: 700;">✓</span>
+          <span>{{ tr }}</span>
+        </li>
+      </sc-for>
+    </ul>
+  </div>
+
+  <div id="features" style="max-width: 1180px; margin: 0 auto; padding: clamp(90px, 12vw, 150px) clamp(20px, 5vw, 48px) 0;">
+    <h2 style="margin: 0 0 14px; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700; max-width: 22em;">{{ t.featTitle }}</h2>
+    <p style="margin: 0 0 clamp(36px, 5vw, 54px); font-size: 18px; line-height: 1.5; color: #4a4f7a; max-width: 34em;">{{ t.featBody }}</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; align-items: stretch;">
+      <sc-for list="{{ features }}" as="f" hint-placeholder-count="5">
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">{{ f.icon }}</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">{{ f.tag }}</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">{{ f.title }}</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">{{ f.body }}</p>
+        </div>
+      </sc-for>
+      <div style="grid-column: 1 / -1; justify-self: center; box-sizing: border-box; width: 100%; max-width: 380px; background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <span style="font-size: 20px; line-height: 1;">&#128241;</span>
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">{{ t.ipadTag }}</span>
+        </div>
+        <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">{{ t.ipadTitle }}</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">{{ t.ipadBody }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="how" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="background: linear-gradient(160deg, #b9cdec 0%, #c6cdf0 45%, #ddc9ec 100%); border-radius: 28px; padding: clamp(38px, 6vw, 68px) clamp(24px, 5vw, 64px);">
+      <h2 style="margin: 0 0 clamp(34px, 5vw, 52px); font-size: clamp(28px, 3.4vw, 42px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">{{ t.howTitle }}</h2>
+      <div style="display: flex; flex-direction: column; gap: clamp(22px, 3vw, 34px);">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+          <div style="display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 26px); margin-left: {{ s.indent }};">
+            <div style="flex: none; width: 42px; height: 42px; border-radius: 50%; background: #1e2140; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600;">{{ s.n }}</div>
+            <div style="padding-top: 4px;">
+              <h3 style="margin: 0 0 6px; font-size: 21px; letter-spacing: -0.02em; font-weight: 600;">{{ s.title }}</h3>
+              <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3a3f6b; text-wrap: pretty; max-width: 34em;">{{ s.body }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div id="screens" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <h2 style="margin: 0 0 clamp(32px, 4vw, 48px); font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">{{ t.screensTitle }}</h2>
+    <div style="{{ galleryStyle }}">
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-expiry.jpg" alt="{{ cap1 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap1 }}</figcaption>
+      </figure>
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-scan.jpg" alt="{{ cap2 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap2 }}</figcaption>
+      </figure>
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-lists.jpg" alt="{{ cap3 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap3 }}</figcaption>
+      </figure>
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-edit.jpg" alt="{{ cap4 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap4 }}</figcaption>
+      </figure>
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-notifications.jpg" alt="{{ cap5 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap5 }}</figcaption>
+      </figure>
+      <figure style="{{ tileStyle }}">
+        <img src="assets/shot-pro2.jpg" alt="{{ cap6 }}" style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">{{ cap6 }}</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div id="pro" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(30px, 5vw, 64px); align-items: center;">
+      <div>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">{{ t.proTag }}</span>
+        <h2 style="margin: 12px 0 16px; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">{{ t.proTitle }}</h2>
+        <p style="margin: 0 0 26px; font-size: 18px; line-height: 1.5; color: #4a4f7a; max-width: 30em; text-wrap: pretty;">{{ t.proBody }}</p>
+        <ul style="margin: 0 0 30px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+          <sc-for list="{{ proItems }}" as="p" hint-placeholder-count="4">
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>{{ p }}</span>
+            </li>
+          </sc-for>
+        </ul>
+        <div style="display: inline-flex; align-items: baseline; gap: 10px; background: #eceaf6; border-radius: 14px; padding: 14px 20px;">
+          <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">CHF 3.00 · €2.99</span>
+          <span style="font-size: 14px; color: #4a4f7a; font-weight: 500;">{{ t.proOnce }}</span>
+        </div>
+      </div>
+      <img src="assets/shot-pro2.jpg" alt="FridgeUp! Pro" style="display: block; width: 100%; max-width: 380px; margin: 0 auto; border-radius: 16px; filter: drop-shadow(0 24px 50px rgba(30,33,64,0.16));">
+    </div>
+  </div>
+
+  <div id="reviews" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 40px);">
+      <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">{{ t.revTitle }}</h2>
+      <span style="font-size: 14.5px; color: #6a6f96;">{{ t.revNote }}</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px;">
+      <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">{{ r.stars }}</span>
+            <span style="font-size: 13px; color: #6a6f96;">{{ r.by }}</span>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">{{ r.title }}</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">{{ r.body }}</p>
+          <sc-if value="{{ r.translated }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">{{ r.note }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(70px, 9vw, 110px) auto 0; padding: 0 clamp(20px, 5vw, 48px); text-align: center;">
+    <h2 style="margin: 0 0 28px; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700;">{{ t.finalTitle }}</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 24px;">
+      <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+        <img src="{{ badgeApple }}" alt="{{ t.cta }}" style="display: block; height: 58px; width: auto;" />
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+        <img src="{{ badgeGoogle }}" alt="{{ t.gplay }}" style="display: block; height: 58px; width: auto;" />
+      </a>
+    </div>
+    <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top: 60px; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+        <img src="assets/qr-get.png" alt="{{ t.qrText }}" style="display: block; width: 150px; height: 150px; border-radius: 14px; background: #fff;" />
+        <span style="font-size: 14px; font-weight: 600; color: #4a4f7a;">{{ t.qrText }}</span>
+      </div>
+    </sc-if>
+  </div>
+
+  <div id="story" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="background: #f4f2fa; border-radius: 28px; padding: clamp(38px, 6vw, 72px) clamp(24px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start;">
+      <div>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">{{ t.storyTag }}</span>
+        <h2 style="margin: 12px 0 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">{{ t.storyTitle }}</h2>
+      </div>
+      <p style="margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #3a3f6b; text-wrap: pretty;">{{ t.storyBody }}</p>
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(90px, 12vw, 140px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="border: 1px dashed #cdc8e0; border-radius: 24px; padding: clamp(30px, 4vw, 46px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+      <div>
+        <h2 style="margin: 0 0 8px; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.025em; font-weight: 700;">{{ t.androidTitle }}</h2>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #4a4f7a; max-width: 34em;">{{ t.androidBody }}</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px;">
+        <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+          <img src="{{ badgeApple }}" alt="{{ t.cta }}" style="display: block; height: 58px; width: auto;" />
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;" style-hover="opacity: 0.85;">
+          <img src="{{ badgeGoogle }}" alt="{{ t.gplay }}" style="display: block; height: 58px; width: auto;" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: clamp(90px, 12vw, 140px) 0 0; border-top: 1px solid #e2e0ee;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 5vw, 60px) clamp(20px, 5vw, 48px) 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 12px;">
+          <img src="assets/icon.jpg" alt="FridgeUp!" style="width: 32px; height: 32px; border-radius: 9px; display: block;">
+          <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em;">FridgeUp!</span>
+        </div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: #6a6f96;">{{ t.footTag }}</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">{{ t.footContact }}</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+          <a href="mailto:fridgeup.ios@gmail.com">iOS — fridgeup.ios@gmail.com</a>
+          <a href="mailto:fridgeup.android@gmail.com">Android — fridgeup.android@gmail.com</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">{{ t.footLinks }}</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+          <a href="supporto.html">{{ t.footSupport }}</a>
+          <a href="https://csigillo-ux.github.io/fridgeup-privacy/" target="_blank" rel="noopener">{{ t.footPrivacy }}</a>
+          <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" target="_blank" rel="noopener">{{ t.footStore }}</a>
+          <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">{{ t.footWrite }}</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <a href="mailto:fridgeup.ios@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #1e2140; color: #fff; border-radius: 12px; padding: 11px 18px; font-size: 15px; font-weight: 600;" style-hover="background: #2b2f5c; color: #fff;">{{ t.footWriteCta }} · iOS</a>
+          <a href="mailto:fridgeup.android@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #1e2140; color: #fff; border-radius: 12px; padding: 11px 18px; font-size: 15px; font-weight: 600;" style-hover="background: #2b2f5c; color: #fff;">{{ t.footWriteCta }} · Android</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px) 40px; font-size: 13.5px; color: #6a6f96;">© 2026 Carmelo Sigilló · Bülach (Schweiz)</div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;it&quot;,&quot;de&quot;,&quot;fr&quot;,&quot;es&quot;,&quot;pt&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Site&quot;},&quot;showProFeatures&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Site&quot;}}">
+const S = {
+  en: {
+    navFeatures: "Features", navHow: "How it works", navPro: "Pro", navStory: "The story",
+    heroBadge: "Out now on iOS and Android",
+    heroTitle: "No more food thrown away because you forgot.",
+    heroBody: "FridgeUp! keeps track of expiry dates and warns you before food goes bad. Add products by scanning a barcode or photographing the expiry date.",
+    cta: "Download on the App Store", ctaNote: "Free download", gplay: "Get it on Google Play",
+    ipadTag: "Free", ipadTitle: "Optimised for iPad too", ipadBody: "The same app on iPhone and iPad, with your lists in sync through iCloud.",
+    featTitle: "Everything in your fridge, with a date on it.",
+    featBody: "Add a product once and FridgeUp! takes care of the rest: it sorts it by urgency and reminds you in time.",
+    howTitle: "Three steps, a few seconds.",
+    screensTitle: "A look inside the app",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "one-time purchase, no subscription",
+    proBody: "The free app already does the important part. Pro adds separate lists and a few things that make it yours.",
+    revTitle: "What people say", revNote: "Reviews from the App Store, in the original language",
+    storyTag: "The story", storyTitle: "One person, one fridge full of expired food",
+    storyBody: "My name is Carmelo. FridgeUp! came out of a fridge full of forgotten, expired food \u2014 one more time throwing away food because I hadn't noticed in time. I'm not a programmer by trade: I learned Swift by writing this app, in my spare time, with help from AI. No team, no company: just me wanting to solve a problem of my own.",
+    androidTitle: "FridgeUp! is on iOS and Android",
+    androidBody: "Get it from the App Store or Google Play. Questions? Write to me at the address for your version.",
+    androidCta: "Tell me when it's out",
+    footTag: "Track expiry dates, waste less food.",
+    trust: ["No account needed", "One-time purchase, no subscription", "Notifications work offline too"],
+    finalTitle: "Ready to stop wasting food?",
+    qrText: "Scan with your phone",
+    footContact: "Contact", footLinks: "Links", footSupport: "Support", footPrivacy: "Privacy policy", footStore: "App Store",
+    footWrite: "Write to me", footWriteCta: "Send an email",
+    features: [
+      { icon: "\ud83d\udcf7", tag: "Free", title: "Barcode and date scanning", body: "Scan the barcode for the product name, then photograph the expiry date. No typing." },
+      { icon: "\ud83d\udd14", tag: "Free", title: "Notifications you set yourself", body: "Choose how many days ahead you want warning and at what time. An optional daily reminder too." },
+      { icon: "\u26a0\ufe0f", tag: "Free", title: "Expired, expiring, fresh", body: "The list sorts itself by urgency, so you see at a glance what needs using up." },
+      { icon: "\u2601\ufe0f", tag: "Free", title: "iCloud sync (iOS), free for everyone", body: "Your lists follow you across your devices. Included in the free app." },
+      { icon: "\ud83d\uddc2\ufe0f", tag: "Pro", title: "Fridge, Freezer, Pantry", body: "Three separate lists, so long-life stock doesn't clutter what you need this week." },
+      { icon: "\ud83c\udfa8", tag: "Pro", title: "Widget, themes, icons", body: "Expiry dates on your home screen, five themes and five alternative app icons." }
+    ],
+    steps: [
+      { n: "1", title: "Scan or photograph", body: "Barcode for the name, camera for the date." },
+      { n: "2", title: "Say where it lives", body: "Fridge, Freezer or Pantry." },
+      { n: "3", title: "Get warned in time", body: "A notification before it expires, not after." }
+    ],
+    proItems: ["Separate lists: Fridge, Freezer, Pantry", "Shared fridge: create a group, the same list for everyone", "Widget with expiry dates on the home screen", "5 exclusive themes", "5 alternative app icons"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Expired, expiring soon, fresh \u2014 sorted by urgency." },
+      { src: "assets/shot-scan.jpg", caption: "Barcode and date scanning, straight from the camera." },
+      { src: "assets/shot-lists.jpg", caption: "Fridge, Freezer and Pantry as separate lists (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Edit name, date or location in seconds." },
+      { src: "assets/shot-notifications.jpg", caption: "Notifications, daily reminder, auto-removal." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro: one-time purchase, no subscription." }
+    ]
+  },
+  it: {
+    navFeatures: "Funzioni", navHow: "Come funziona", navPro: "Pro", navStory: "La storia",
+    heroBadge: "Disponibile su iOS e Android",
+    heroTitle: "Niente pi\u00f9 cibo buttato per dimenticanza.",
+    heroBody: "FridgeUp! tiene traccia delle scadenze alimentari e avvisa prima che il cibo vada a male. Aggiungi i prodotti scansionando il codice a barre o fotografando la data di scadenza.",
+    cta: "Scarica su App Store", ctaNote: "Download gratuito", gplay: "Disponibile su Google Play",
+    ipadTag: "Gratis", ipadTitle: "Ottimizzata anche per iPad", ipadBody: "La stessa app su iPhone e iPad, con le liste sincronizzate via iCloud.",
+    featTitle: "Tutto quello che hai in frigo, con la sua data.",
+    featBody: "Aggiungi un prodotto una volta e al resto pensa FridgeUp!: lo ordina per urgenza e ti avvisa in tempo.",
+    howTitle: "Tre passi, una manciata di secondi.",
+    screensTitle: "Uno sguardo dentro l'app",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "acquisto unico, nessun abbonamento",
+    proBody: "L'app gratuita fa gi\u00e0 la parte importante. Pro aggiunge le liste separate e qualche cosa in pi\u00f9 per farla tua.",
+    revTitle: "Cosa dicono", revNote: "Recensioni dall'App Store, in lingua originale",
+    storyTag: "La storia", storyTitle: "Una persona, un frigo pieno di roba scaduta",
+    storyBody: "Mi chiamo Carmelo. FridgeUp! \u00e8 nato da un frigo pieno di roba scaduta e dimenticata \u2014 l'ennesima volta che buttavo cibo perch\u00e9 non mi ero accorto in tempo. Non sono un programmatore di mestiere: ho imparato Swift scrivendo questa app, nel tempo libero, con l'aiuto dell'AI. Nessun team, nessuna azienda: solo io che volevo risolvere un problema mio.",
+    androidTitle: "FridgeUp! \u00e8 su iOS e Android",
+    androidBody: "Scaricala da App Store o Google Play. Domande? Scrivimi all'indirizzo della tua versione.",
+    androidCta: "Avvisami all'uscita",
+    footTag: "Tieni d'occhio le scadenze, butta via meno.",
+    trust: ["Nessun account richiesto", "Acquisto unico, nessun abbonamento", "Notifiche anche offline"],
+    finalTitle: "Pronto a buttare via meno cibo?",
+    qrText: "Scansiona con il telefono",
+    footContact: "Contatti", footLinks: "Link", footSupport: "Supporto", footPrivacy: "Privacy policy", footStore: "App Store",
+    footWrite: "Scrivimi", footWriteCta: "Manda una mail",
+    features: [
+      { icon: "\ud83d\udcf7", tag: "Gratis", title: "Scansione codice e data", body: "Scansiona il codice a barre per il nome, poi fotografa la data di scadenza. Niente da digitare." },
+      { icon: "\ud83d\udd14", tag: "Gratis", title: "Notifiche come le vuoi tu", body: "Scegli quanti giorni prima essere avvisato e a che ora. C'\u00e8 anche il promemoria giornaliero." },
+      { icon: "\u26a0\ufe0f", tag: "Gratis", title: "Scaduto, in scadenza, fresco", body: "La lista si ordina da s\u00e9 per urgenza: vedi subito cosa va consumato." },
+      { icon: "\u2601\ufe0f", tag: "Gratis", title: "Sincronizzazione iCloud (iOS), per tutti", body: "Le tue liste ti seguono su tutti i dispositivi. Inclusa nella versione gratuita." },
+      { icon: "\ud83d\uddc2\ufe0f", tag: "Pro", title: "Frigo, Freezer, Dispensa", body: "Tre liste separate, cos\u00ec le scorte a lunga scadenza non intasano quello che serve adesso." },
+      { icon: "\ud83c\udfa8", tag: "Pro", title: "Widget, temi, icone", body: "Le scadenze sulla schermata home, cinque temi e cinque icone alternative." }
+    ],
+    steps: [
+      { n: "1", title: "Scansiona o fotografa", body: "Il codice a barre per il nome, la fotocamera per la data." },
+      { n: "2", title: "Di' dove lo metti", body: "Frigo, Freezer o Dispensa." },
+      { n: "3", title: "Fatti avvisare in tempo", body: "Una notifica prima che scada, non dopo." }
+    ],
+    proItems: ["Liste separate: Frigo, Freezer, Dispensa", "Frigo condiviso: crea un gruppo, la stessa lista per tutti", "Widget con le scadenze sulla home", "5 temi esclusivi", "5 icone alternative dell'app"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Scaduto, in scadenza, fresco \u2014 ordinati per urgenza." },
+      { src: "assets/shot-scan.jpg", caption: "Scansione di codice a barre e data, dalla fotocamera." },
+      { src: "assets/shot-lists.jpg", caption: "Frigo, Freezer e Dispensa come liste separate (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Modifichi nome, data o posizione in pochi secondi." },
+      { src: "assets/shot-notifications.jpg", caption: "Notifiche, promemoria giornaliero, rimozione automatica." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro: acquisto unico, nessun abbonamento." }
+    ]
+  },
+  de: {
+    navFeatures: "Funktionen", navHow: "So funktioniert's", navPro: "Pro", navStory: "Die Geschichte",
+    heroBadge: "Jetzt f\u00fcr iOS und Android",
+    heroTitle: "Kein Essen mehr, das aus Vergesslichkeit im M\u00fcll landet.",
+    heroBody: "FridgeUp! beh\u00e4lt die Ablaufdaten im Blick und warnt dich, bevor Lebensmittel schlecht werden. Produkte f\u00fcgst du hinzu, indem du den Barcode scannst oder das Datum abfotografierst.",
+    cta: "Im App Store laden", ctaNote: "Kostenloser Download", gplay: "Jetzt bei Google Play",
+    ipadTag: "Gratis", ipadTitle: "Auch f\u00fcrs iPad optimiert", ipadBody: "Dieselbe App auf iPhone und iPad, die Listen per iCloud synchron.",
+    featTitle: "Alles im K\u00fchlschrank, mit Datum.",
+    featBody: "Produkt einmal hinzuf\u00fcgen, den Rest macht FridgeUp!: sortiert nach Dringlichkeit und erinnert dich rechtzeitig.",
+    howTitle: "Drei Schritte, ein paar Sekunden.",
+    screensTitle: "Ein Blick in die App",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "Einmalkauf, kein Abo",
+    proBody: "Die kostenlose App erledigt schon das Wichtigste. Pro bringt getrennte Listen und ein paar Extras dazu.",
+    revTitle: "Was Nutzer sagen", revNote: "Bewertungen aus dem App Store, im Original",
+    storyTag: "Die Geschichte", storyTitle: "Eine Person, ein K\u00fchlschrank voll Abgelaufenem",
+    storyBody: "Ich hei\u00dfe Carmelo. FridgeUp! ist aus einem K\u00fchlschrank voller vergessener, abgelaufener Lebensmittel entstanden \u2014 wieder einmal warf ich Essen weg, weil ich es nicht rechtzeitig gemerkt hatte. Ich bin kein Programmierer von Beruf: Swift habe ich gelernt, indem ich diese App in meiner Freizeit geschrieben habe, mit Hilfe von KI. Kein Team, keine Firma: nur ich, der ein eigenes Problem l\u00f6sen wollte.",
+    androidTitle: "FridgeUp! gibt es für iOS und Android",
+    androidBody: "Lade sie im App Store oder bei Google Play herunter. Fragen? Schreib mir an die Adresse deiner Version.",
+    androidCta: "Benachrichtige mich",
+    footTag: "Ablaufdaten im Blick, weniger im M\u00fcll.",
+    trust: ["Kein Konto nötig", "Einmalkauf, kein Abo", "Benachrichtigungen auch offline"],
+    finalTitle: "Bereit, weniger Essen wegzuwerfen?",
+    qrText: "Mit dem Handy scannen",
+    footContact: "Kontakt", footLinks: "Links", footSupport: "Support", footPrivacy: "Datenschutz", footStore: "App Store",
+    footWrite: "Schreib mir", footWriteCta: "E-Mail senden",
+    features: [
+      { icon: "\ud83d\udcf7", tag: "Gratis", title: "Barcode und Datum scannen", body: "Barcode f\u00fcr den Namen, Kamera f\u00fcr das Ablaufdatum. Nichts eintippen." },
+      { icon: "\ud83d\udd14", tag: "Gratis", title: "Benachrichtigungen nach Ma\u00df", body: "W\u00e4hle, wie viele Tage vorher und zu welcher Uhrzeit. Optional auch eine t\u00e4gliche Erinnerung." },
+      { icon: "\u26a0\ufe0f", tag: "Gratis", title: "Abgelaufen, l\u00e4uft ab, frisch", body: "Die Liste sortiert sich nach Dringlichkeit \u2014 du siehst sofort, was weg muss." },
+      { icon: "\u2601\ufe0f", tag: "Gratis", title: "iCloud-Sync (iOS), f\u00fcr alle gratis", body: "Deine Listen sind auf allen Ger\u00e4ten dabei. In der kostenlosen App enthalten." },
+      { icon: "\ud83d\uddc2\ufe0f", tag: "Pro", title: "K\u00fchlschrank, Gefrierfach, Vorrat", body: "Drei getrennte Listen, damit Vorr\u00e4te nicht das verdecken, was diese Woche z\u00e4hlt." },
+      { icon: "\ud83c\udfa8", tag: "Pro", title: "Widget, Themes, Icons", body: "Ablaufdaten auf dem Homescreen, f\u00fcnf Themes und f\u00fcnf alternative App-Icons." }
+    ],
+    steps: [
+      { n: "1", title: "Scannen oder fotografieren", body: "Barcode f\u00fcr den Namen, Kamera f\u00fcr das Datum." },
+      { n: "2", title: "Ort ausw\u00e4hlen", body: "K\u00fchlschrank, Gefrierfach oder Vorrat." },
+      { n: "3", title: "Rechtzeitig gewarnt werden", body: "Eine Benachrichtigung vor dem Ablauf, nicht danach." }
+    ],
+    proItems: ["Getrennte Listen: K\u00fchlschrank, Gefrierfach, Vorrat", "Geteilter K\u00fchlschrank: Gruppe erstellen, dieselbe Liste f\u00fcr alle", "Widget mit Ablaufdaten auf dem Homescreen", "5 exklusive Themes", "5 alternative App-Icons"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Abgelaufen, l\u00e4uft ab, frisch \u2014 nach Dringlichkeit sortiert." },
+      { src: "assets/shot-scan.jpg", caption: "Barcode und Datum direkt mit der Kamera scannen." },
+      { src: "assets/shot-lists.jpg", caption: "K\u00fchlschrank, Gefrierfach und Vorrat als getrennte Listen (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Name, Datum oder Ort in Sekunden \u00e4ndern." },
+      { src: "assets/shot-notifications.jpg", caption: "Benachrichtigungen, t\u00e4gliche Erinnerung, Auto-Entfernen." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro: Einmalkauf, kein Abo." }
+    ]
+  },
+  fr: {
+    navFeatures: "Fonctions", navHow: "Comment ça marche", navPro: "Pro", navStory: "L'histoire",
+    heroBadge: "Disponible sur iOS et Android",
+    heroTitle: "Plus de nourriture jetée parce que tu as oublié.",
+    heroBody: "FridgeUp! suit les dates de péremption et te prévient avant que les aliments ne se gâtent. Ajoute tes produits en scannant le code-barres ou en photographiant la date.",
+    cta: "Télécharger dans l'App Store", ctaNote: "Téléchargement gratuit", gplay: "Disponible sur Google Play",
+    ipadTag: "Gratuit", ipadTitle: "Optimisée aussi pour iPad", ipadBody: "La même app sur iPhone et iPad, avec tes listes synchronisées via iCloud.",
+    featTitle: "Tout ton frigo, avec une date.",
+    featBody: "Ajoute un produit une fois et FridgeUp! s'occupe du reste : il le trie par urgence et te le rappelle à temps.",
+    howTitle: "Trois étapes, quelques secondes.",
+    screensTitle: "Un aperçu de l'app",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "achat unique, sans abonnement",
+    proBody: "L'app gratuite fait déjà l'essentiel. Pro ajoute des listes séparées et quelques extras pour la personnaliser.",
+    revTitle: "Ce qu'en disent les utilisateurs", revNote: "Avis de l'App Store, dans la langue d'origine",
+    storyTag: "L'histoire", storyTitle: "Une personne, un frigo plein d'aliments périmés",
+    storyBody: "Je m'appelle Carmelo. FridgeUp! est né d'un frigo plein d'aliments oubliés et périmés — une fois de plus, j'avais jeté de la nourriture parce que je ne m'en étais pas aperçu à temps. Je ne suis pas programmeur de métier : j'ai appris Swift en écrivant cette app pendant mon temps libre, avec l'aide de l'IA. Pas d'équipe, pas d'entreprise : juste moi, qui voulais résoudre un problème qui était le mien.",
+    androidTitle: "FridgeUp! existe sur iOS et Android",
+    androidBody: "Télécharge-la sur l'App Store ou Google Play. Une question ? Écris-moi à l'adresse de ta version.",
+    androidCta: "Préviens-moi",
+    footTag: "Suis les dates de péremption, gaspille moins.",
+    trust: ["Aucun compte requis", "Achat unique, sans abonnement", "Notifications même hors ligne"],
+    finalTitle: "Prêt à gaspiller moins ?",
+    qrText: "Scanne avec ton téléphone",
+    footContact: "Contact", footLinks: "Liens", footSupport: "Assistance", footPrivacy: "Politique de confidentialité", footStore: "App Store",
+    footWrite: "Écris-moi", footWriteCta: "Envoyer un e-mail",
+    features: [
+      { icon: "📷", tag: "Gratuit", title: "Scan du code-barres et de la date", body: "Scanne le code-barres pour le nom, puis photographie la date de péremption. Sans rien taper." },
+      { icon: "🔔", tag: "Gratuit", title: "Des notifications à ta façon", body: "Choisis combien de jours à l'avance et à quelle heure. Avec un rappel quotidien en option." },
+      { icon: "⚠️", tag: "Gratuit", title: "Périmé, bientôt périmé, frais", body: "La liste se trie toute seule par urgence : tu vois d'un coup d'œil ce qu'il faut consommer." },
+      { icon: "☁️", tag: "Gratuit", title: "Synchro iCloud (iOS), gratuite pour tous", body: "Tes listes te suivent sur tous tes appareils. Incluse dans l'app gratuite." },
+      { icon: "🗂️", tag: "Pro", title: "Frigo, congélateur, garde-manger", body: "Trois listes séparées, pour que les réserves ne masquent pas ce qui compte cette semaine." },
+      { icon: "🎨", tag: "Pro", title: "Widget, thèmes, icônes", body: "Les dates de péremption sur ton écran d'accueil, cinq thèmes et cinq icônes d'app alternatives." }
+    ],
+    steps: [
+      { n: "1", title: "Scanne ou photographie", body: "Code-barres pour le nom, appareil photo pour la date." },
+      { n: "2", title: "Dis où il se trouve", body: "Frigo, congélateur ou garde-manger." },
+      { n: "3", title: "Sois prévenu à temps", body: "Une notification avant la péremption, pas après." }
+    ],
+    proItems: ["Listes séparées : frigo, congélateur, garde-manger", "Frigo partagé : crée un groupe, la même liste pour tous", "Widget avec les dates de péremption sur l'écran d'accueil", "5 thèmes exclusifs", "5 icônes d'app alternatives"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Périmé, bientôt périmé, frais — trié par urgence." },
+      { src: "assets/shot-scan.jpg", caption: "Scan du code-barres et de la date, directement avec l'appareil photo." },
+      { src: "assets/shot-lists.jpg", caption: "Frigo, congélateur et garde-manger en listes séparées (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Modifie le nom, la date ou l'emplacement en quelques secondes." },
+      { src: "assets/shot-notifications.jpg", caption: "Notifications, rappel quotidien, suppression automatique." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro : achat unique, sans abonnement." }
+    ]
+  },
+  es: {
+    navFeatures: "Funciones", navHow: "Cómo funciona", navPro: "Pro", navStory: "La historia",
+    heroBadge: "Disponible en iOS y Android",
+    heroTitle: "Se acabó tirar comida por olvidarte.",
+    heroBody: "FridgeUp! controla las fechas de caducidad y te avisa antes de que los alimentos se estropeen. Añade productos escaneando el código de barras o fotografiando la fecha.",
+    cta: "Descargar en el App Store", ctaNote: "Descarga gratuita", gplay: "Descargar en Google Play",
+    ipadTag: "Gratis", ipadTitle: "Optimizada también para iPad", ipadBody: "La misma app en iPhone y iPad, con tus listas sincronizadas por iCloud.",
+    featTitle: "Todo lo de tu nevera, con fecha.",
+    featBody: "Añade un producto una vez y FridgeUp! se encarga del resto: lo ordena por urgencia y te lo recuerda a tiempo.",
+    howTitle: "Tres pasos, unos pocos segundos.",
+    screensTitle: "Un vistazo a la app",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "compra única, sin suscripción",
+    proBody: "La app gratuita ya hace lo importante. Pro añade listas separadas y algunos extras para hacerla tuya.",
+    revTitle: "Lo que dice la gente", revNote: "Reseñas del App Store, en el idioma original",
+    storyTag: "La historia", storyTitle: "Una persona, una nevera llena de alimentos caducados",
+    storyBody: "Me llamo Carmelo. FridgeUp! nació de una nevera llena de comida olvidada y caducada — otra vez había tirado comida por no darme cuenta a tiempo. No soy programador de profesión: aprendí Swift escribiendo esta app en mi tiempo libre, con la ayuda de la IA. Sin equipo, sin empresa: solo yo, queriendo resolver un problema propio.",
+    androidTitle: "FridgeUp! está en iOS y Android",
+    androidBody: "Descárgala en el App Store o en Google Play. ¿Dudas? Escríbeme a la dirección de tu versión.",
+    androidCta: "Avísame",
+    footTag: "Controla las fechas de caducidad, desperdicia menos.",
+    trust: ["Sin cuenta", "Compra única, sin suscripción", "Notificaciones también sin conexión"],
+    finalTitle: "¿Listo para desperdiciar menos comida?",
+    qrText: "Escanea con tu teléfono",
+    footContact: "Contacto", footLinks: "Enlaces", footSupport: "Soporte", footPrivacy: "Política de privacidad", footStore: "App Store",
+    footWrite: "Escríbeme", footWriteCta: "Enviar un correo",
+    features: [
+      { icon: "📷", tag: "Gratis", title: "Escaneo de código de barras y fecha", body: "Escanea el código de barras para el nombre y fotografía la fecha de caducidad. Sin escribir nada." },
+      { icon: "🔔", tag: "Gratis", title: "Notificaciones a tu manera", body: "Elige con cuántos días de antelación y a qué hora. Con recordatorio diario opcional." },
+      { icon: "⚠️", tag: "Gratis", title: "Caducado, por caducar, fresco", body: "La lista se ordena sola por urgencia, así ves de un vistazo qué hay que consumir." },
+      { icon: "☁️", tag: "Gratis", title: "Sincronización iCloud (iOS), gratis para todos", body: "Tus listas te acompañan en todos tus dispositivos. Incluida en la app gratuita." },
+      { icon: "🗂️", tag: "Pro", title: "Nevera, congelador, despensa", body: "Tres listas separadas, para que las reservas no tapen lo que importa esta semana." },
+      { icon: "🎨", tag: "Pro", title: "Widget, temas, iconos", body: "Las fechas de caducidad en tu pantalla de inicio, cinco temas y cinco iconos alternativos de la app." }
+    ],
+    steps: [
+      { n: "1", title: "Escanea o fotografía", body: "Código de barras para el nombre, cámara para la fecha." },
+      { n: "2", title: "Indica dónde está", body: "Nevera, congelador o despensa." },
+      { n: "3", title: "Recibe el aviso a tiempo", body: "Una notificación antes de que caduque, no después." }
+    ],
+    proItems: ["Listas separadas: nevera, congelador, despensa", "Nevera compartida: crea un grupo, la misma lista para todos", "Widget con las fechas de caducidad en la pantalla de inicio", "5 temas exclusivos", "5 iconos alternativos de la app"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Caducado, por caducar, fresco — ordenado por urgencia." },
+      { src: "assets/shot-scan.jpg", caption: "Escaneo del código de barras y la fecha, directamente con la cámara." },
+      { src: "assets/shot-lists.jpg", caption: "Nevera, congelador y despensa como listas separadas (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Edita el nombre, la fecha o la ubicación en segundos." },
+      { src: "assets/shot-notifications.jpg", caption: "Notificaciones, recordatorio diario, eliminación automática." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro: compra única, sin suscripción." }
+    ]
+  },
+  pt: {
+    navFeatures: "Funcionalidades", navHow: "Como funciona", navPro: "Pro", navStory: "A história",
+    heroBadge: "Disponível no iOS e Android",
+    heroTitle: "Chega de deitar comida fora por esquecimento.",
+    heroBody: "O FridgeUp! acompanha as datas de validade e avisa-te antes de os alimentos se estragarem. Adiciona produtos lendo o código de barras ou fotografando a data.",
+    cta: "Descarregar na App Store", ctaNote: "Descarga gratuita", gplay: "Obter no Google Play",
+    ipadTag: "Grátis", ipadTitle: "Otimizada também para iPad", ipadBody: "A mesma app no iPhone e no iPad, com as tuas listas sincronizadas via iCloud.",
+    featTitle: "Tudo o que está no teu frigorífico, com data.",
+    featBody: "Adiciona um produto uma vez e o FridgeUp! trata do resto: ordena-o por urgência e lembra-te a tempo.",
+    howTitle: "Três passos, poucos segundos.",
+    screensTitle: "Uma espreitadela à app",
+    proTag: "Pro", proTitle: "FridgeUp! Pro", proOnce: "compra única, sem subscrição",
+    proBody: "A app gratuita já faz o essencial. O Pro acrescenta listas separadas e alguns extras para a tornares tua.",
+    revTitle: "O que dizem os utilizadores", revNote: "Avaliações da App Store, no idioma original",
+    storyTag: "A história", storyTitle: "Uma pessoa, um frigorífico cheio de alimentos fora de prazo",
+    storyBody: "Chamo-me Carmelo. O FridgeUp! nasceu de um frigorífico cheio de comida esquecida e fora de prazo — mais uma vez tinha deitado comida fora por não me ter apercebido a tempo. Não sou programador de profissão: aprendi Swift a escrever esta app nos meus tempos livres, com a ajuda da IA. Sem equipa, sem empresa: só eu, a querer resolver um problema meu.",
+    androidTitle: "O FridgeUp! está no iOS e Android",
+    androidBody: "Descarrega-o na App Store ou no Google Play. Dúvidas? Escreve-me para o endereço da tua versão.",
+    androidCta: "Avisa-me",
+    footTag: "Acompanha as datas de validade, desperdiça menos.",
+    trust: ["Sem conta", "Compra única, sem subscrição", "Notificações também offline"],
+    finalTitle: "Pronto para desperdiçar menos comida?",
+    qrText: "Lê com o telemóvel",
+    footContact: "Contacto", footLinks: "Ligações", footSupport: "Suporte", footPrivacy: "Política de privacidade", footStore: "App Store",
+    footWrite: "Escreve-me", footWriteCta: "Enviar um e-mail",
+    features: [
+      { icon: "📷", tag: "Grátis", title: "Leitura de código de barras e data", body: "Lê o código de barras para o nome e fotografa a data de validade. Sem escrever nada." },
+      { icon: "🔔", tag: "Grátis", title: "Notificações à tua maneira", body: "Escolhe com quantos dias de antecedência e a que horas. Com lembrete diário opcional." },
+      { icon: "⚠️", tag: "Grátis", title: "Fora de prazo, a expirar, fresco", body: "A lista ordena-se sozinha por urgência, por isso vês logo o que é preciso consumir." },
+      { icon: "☁️", tag: "Grátis", title: "Sincronização iCloud (iOS), grátis para todos", body: "As tuas listas acompanham-te em todos os dispositivos. Incluída na app gratuita." },
+      { icon: "🗂️", tag: "Pro", title: "Frigorífico, congelador, despensa", body: "Três listas separadas, para que as reservas não tapem o que importa esta semana." },
+      { icon: "🎨", tag: "Pro", title: "Widget, temas, ícones", body: "As datas de validade no ecrã principal, cinco temas e cinco ícones alternativos da app." }
+    ],
+    steps: [
+      { n: "1", title: "Lê ou fotografa", body: "Código de barras para o nome, câmara para a data." },
+      { n: "2", title: "Diz onde está", body: "Frigorífico, congelador ou despensa." },
+      { n: "3", title: "Recebe o aviso a tempo", body: "Uma notificação antes de expirar, não depois." }
+    ],
+    proItems: ["Listas separadas: frigorífico, congelador, despensa", "Frigorífico partilhado: cria um grupo, a mesma lista para todos", "Widget com as datas de validade no ecrã principal", "5 temas exclusivos", "5 ícones alternativos da app"],
+    screens: [
+      { src: "assets/shot-expiry.jpg", caption: "Fora de prazo, a expirar, fresco — ordenado por urgência." },
+      { src: "assets/shot-scan.jpg", caption: "Leitura do código de barras e da data, diretamente com a câmara." },
+      { src: "assets/shot-lists.jpg", caption: "Frigorífico, congelador e despensa como listas separadas (Pro)." },
+      { src: "assets/shot-edit.jpg", caption: "Edita o nome, a data ou o local em segundos." },
+      { src: "assets/shot-notifications.jpg", caption: "Notificações, lembrete diário, remoção automática." },
+      { src: "assets/shot-pro2.jpg", caption: "Pro: compra única, sem subscrição." }
+    ]
+  }
+};
+
+const REVIEWS = [
+  { lang: "de", by: "LFischer! \u00b7 8 Jul", stars: 5,
+    de: { title: "Praktisch, \u00fcbersichtlich und wirklich hilfreich!", body: "Diese App ist eine tolle Idee und hervorragend umgesetzt. Sie ist einfach zu bedienen, \u00fcbersichtlich gestaltet und hilft dabei, Lebensmittel besser zu organisieren und unn\u00f6tige Verschwendung zu vermeiden. Besonders die Erinnerungen an ablaufende Produkte sind im Alltag sehr praktisch. Man merkt, dass viel Arbeit und Herzblut in die Entwicklung geflossen sind. Ich freue mich schon auf zuk\u00fcnftige Updates und kann die App jedem empfehlen!" },
+    en: { title: "Practical, clear and genuinely helpful!", body: "This app is a great idea and beautifully done. It's easy to use, clearly laid out, and helps you organise food better and avoid unnecessary waste. The reminders for products about to expire are especially useful day to day. You can tell a lot of work and care went into it. I'm looking forward to future updates and can recommend the app to anyone!" },
+    it: { title: "Pratica, chiara e davvero utile!", body: "Questa app \u00e8 un'ottima idea, realizzata benissimo. \u00c8 semplice da usare, ben organizzata e aiuta a gestire meglio il cibo evitando sprechi inutili. Soprattutto i promemoria sui prodotti in scadenza sono comodissimi ogni giorno. Si vede che dietro c'\u00e8 molto lavoro e passione. Aspetto con piacere i prossimi aggiornamenti e la consiglio a tutti!" },
+    fr: { title: "Pratique, claire et vraiment utile !", body: "Cette app est une excellente idée, très bien réalisée. Elle est simple à utiliser, bien organisée et aide à mieux gérer la nourriture en évitant le gaspillage inutile. Les rappels pour les produits qui arrivent à péremption sont particulièrement pratiques au quotidien. On sent que beaucoup de travail et de passion y ont été investis. J'attends avec impatience les prochaines mises à jour et je la recommande à tout le monde !" },
+    es: { title: "¡Práctica, clara y realmente útil!", body: "Esta app es una gran idea y está muy bien hecha. Es fácil de usar, está bien organizada y ayuda a gestionar mejor la comida evitando desperdicios innecesarios. Los recordatorios de los productos que están a punto de caducar son especialmente útiles en el día a día. Se nota que hay mucho trabajo y pasión detrás. ¡Espero con ganas las próximas actualizaciones y se la recomiendo a todo el mundo!" },
+    pt: { title: "Prática, clara e realmente útil!", body: "Esta app é uma excelente ideia e está muito bem feita. É fácil de usar, bem organizada e ajuda a gerir melhor a comida, evitando desperdícios desnecessários. Os lembretes dos produtos a expirar são especialmente úteis no dia a dia. Nota-se que há muito trabalho e paixão por trás. Aguardo com expectativa as próximas atualizações e recomendo-a a todos!" } },
+  { lang: "de", by: "Janini.bini \u00b7 11 Aug", stars: 4,
+    de: { title: "Toll!", body: "Einfach zu bedienen! Tolle scanner funktion. Folgender Verbesserungsvorschlag: Familiefreigabe :)" },
+    en: { title: "Great!", body: "Easy to use! Great scanner function. One suggestion for improvement: family sharing :)" },
+    it: { title: "Ottima!", body: "Facile da usare! Ottima la funzione scanner. Un suggerimento: la condivisione in famiglia :)" },
+    fr: { title: "Super !", body: "Facile à utiliser ! Super fonction de scan. Une suggestion d'amélioration : le partage familial :)" },
+    es: { title: "¡Genial!", body: "¡Fácil de usar! Genial la función de escáner. Una sugerencia de mejora: compartir en familia :)" },
+    pt: { title: "Ótima!", body: "Fácil de usar! Ótima função de leitura. Uma sugestão de melhoria: partilha familiar :)" } },
+  { lang: "it", by: "Skizzetta68 \u00b7 17 lug", stars: 5,
+    it: { title: "Wow", body: "Bellissima app! Fa davvero bene il suo lavoro. La grafica \u00e8 molto bella, pulita e intuitiva, e si usa senza difficolt\u00e0. Mi \u00e8 piaciuta fin dal primo utilizzo." },
+    en: { title: "Wow", body: "Lovely app! It really does its job well. The design is beautiful, clean and intuitive, and it's easy to use. I liked it from the very first time." },
+    de: { title: "Wow", body: "Sch\u00f6ne App! Sie macht ihre Sache wirklich gut. Das Design ist h\u00fcbsch, klar und intuitiv, die Bedienung f\u00e4llt leicht. Sie hat mir vom ersten Mal an gefallen." },
+    fr: { title: "Wow", body: "Superbe app ! Elle fait vraiment bien son travail. Le design est très beau, épuré et intuitif, et elle s'utilise sans difficulté. Elle m'a plu dès la première utilisation." },
+    es: { title: "Wow", body: "¡Una app preciosa! Hace muy bien su trabajo. El diseño es muy bonito, limpio e intuitivo, y se usa sin dificultad. Me gustó desde el primer uso." },
+    pt: { title: "Uau", body: "Uma app excelente! Faz mesmo bem o seu trabalho. O design é muito bonito, limpo e intuitivo, e usa-se sem dificuldade. Gostei dela desde a primeira utilização." } },
+  { lang: "it", by: "Terence Lionel \u00b7 8 set", stars: 5,
+    it: { title: "Un'applicazione fantastica", body: "Un'applicazione fantastica da quando la uso non ho pi\u00f9 buttato via nessuna derrata! La consiglio vivamente" },
+    en: { title: "A fantastic app", body: "A fantastic app \u2014 since I started using it I haven't thrown away a single item of food! Highly recommended." },
+    de: { title: "Eine fantastische App", body: "Eine fantastische App \u2014 seit ich sie benutze, habe ich kein einziges Lebensmittel mehr weggeworfen! Sehr zu empfehlen." },
+    fr: { title: "Une app fantastique", body: "Une app fantastique — depuis que je l'utilise, je n'ai plus jeté aucun aliment ! Je la recommande vivement." },
+    es: { title: "Una app fantástica", body: "Una app fantástica: desde que la uso no he vuelto a tirar ningún alimento. ¡Muy recomendable!" },
+    pt: { title: "Uma app fantástica", body: "Uma app fantástica — desde que a uso, não deitei fora nem um único alimento! Recomendo vivamente." } }
+];
+
+const TRANS_NOTE = {
+  en: { de: "Translated from German", it: "Translated from Italian" },
+  it: { de: "Tradotta dal tedesco", it: "" },
+  de: { it: "Aus dem Italienischen \u00fcbersetzt", de: "" },
+  fr: { de: "Traduit de l'allemand", it: "Traduit de l'italien" },
+  es: { de: "Traducido del alem\u00e1n", it: "Traducido del italiano" },
+  pt: { de: "Traduzido do alem\u00e3o", it: "Traduzido do italiano" }
+};
+
+const PILL_ON = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "rgba(255,255,255,0.78)", color: "#1e2140", fontSize: "13px", fontWeight: 600, fontFamily: "inherit", cursor: "pointer" };
+const PILL_OFF = { padding: "6px 12px", borderRadius: "999px", border: "none", background: "transparent", color: "#6a6f96", fontSize: "13px", fontWeight: 500, fontFamily: "inherit", cursor: "pointer" };
+
+class Component extends DCLogic {
+  state = { lang: null };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem("fridgeup-site-lang");
+      if (saved && S[saved]) this.setState({ lang: saved });
+    } catch (e) {}
+    this._onResize = () => {
+      const narrow = window.innerWidth < 700;
+      if (narrow !== this.state.narrow) this.setState({ narrow });
+    };
+    this._onResize();
+    window.addEventListener("resize", this._onResize);
+  }
+
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener("resize", this._onResize);
+  }
+
+  pick(lang) {
+    this.setState({ lang });
+    try { localStorage.setItem("fridgeup-site-lang", lang); } catch (e) {}
+  }
+
+  renderVals() {
+    const lang = this.state.lang || this.props.defaultLang || "en";
+    const t = S[lang] || S.en;
+    return {
+      lang, t,
+      reviews: REVIEWS.map(r => {
+        const copy = r[lang] || r.en || r[r.lang];
+        const translated = r.lang !== lang;
+        return {
+          by: r.by,
+          stars: "\u2605".repeat(r.stars) + "\u2606".repeat(5 - r.stars),
+          title: copy.title,
+          body: copy.body,
+          translated: translated,
+          note: translated ? ((TRANS_NOTE[lang] || TRANS_NOTE.en)[r.lang] || "") : ""
+        };
+      }),
+      isWide: !this.state.narrow,
+      heroMainStyle: this.state.narrow
+        ? "width: 100%; max-width: 380px; overflow: hidden; border-radius: 16px; aspect-ratio: 1290/2180; filter: drop-shadow(0 24px 50px rgba(30,33,64,0.16));"
+        : "width: 34%; max-width: 400px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; filter: drop-shadow(0 30px 60px rgba(30,33,64,0.2));",
+      heroCtaStyle: this.state.narrow
+        ? "display: flex; flex-direction: column; align-items: center; gap: 20px;"
+        : "display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px;",
+      galleryStyle: this.state.narrow
+        ? "display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 calc(-1 * clamp(20px, 5vw, 48px)); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);"
+        : "display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: clamp(16px, 2.5vw, 30px);",
+      tileStyle: this.state.narrow
+        ? "margin: 0; flex: 0 0 62%; scroll-snap-align: start;"
+        : "margin: 0;",
+      badgeApple: "assets/appstore-" + (S[lang] ? lang : "en") + ".svg",
+      badgeGoogle: "assets/googleplay-" + (S[lang] ? lang : "en") + ".svg",
+      features: (this.props.showProFeatures === false) ? t.features.filter(f => f.tag !== "Pro") : t.features,
+      steps: t.steps.map((s, i) => Object.assign({}, s, { indent: this.state.narrow ? "0px" : (["0px", "clamp(16px, 5vw, 72px)", "clamp(32px, 10vw, 144px)"][i] || "0px") })),
+      proItems: t.proItems,
+      cap1: t.screens[0].caption,
+      cap2: t.screens[1].caption,
+      cap3: t.screens[2].caption,
+      cap4: t.screens[3].caption,
+      cap5: t.screens[4].caption,
+      cap6: t.screens[5].caption,
+      setEn: () => this.pick("en"),
+      setIt: () => this.pick("it"),
+      setDe: () => this.pick("de"),
+      setFr: () => this.pick("fr"),
+      setEs: () => this.pick("es"),
+      setPt: () => this.pick("pt"),
+      pillEn: lang === "en" ? PILL_ON : PILL_OFF,
+      pillIt: lang === "it" ? PILL_ON : PILL_OFF,
+      pillDe: lang === "de" ? PILL_ON : PILL_OFF,
+      pillFr: lang === "fr" ? PILL_ON : PILL_OFF,
+      pillEs: lang === "es" ? PILL_ON : PILL_OFF,
+      pillPt: lang === "pt" ? PILL_ON : PILL_OFF
+    };
+  }
+}
+
+</script>
+</body>
+</html>

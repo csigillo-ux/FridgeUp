@@ -1,0 +1,6 @@
+# GitHub Pages (Jekyll) settings: keep the editable sources and the build script
+# out of the published site; only the generated pages are served.
+exclude:
+  - src
+  - tools
+  - README.md

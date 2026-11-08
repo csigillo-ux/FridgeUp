@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FridgeUp! — Suis les dates de péremption, gaspille moins</title>
+<meta name="description" content="FridgeUp! suit les dates de péremption et te prévient avant que les aliments ne se gâtent. Scanne le code-barres ou photographie la date. Gratuit sur iOS et Android." />
+<link rel="canonical" href="https://fridgeup.app/fr/" />
+<link rel="alternate" hreflang="en" href="https://fridgeup.app/" />
+<link rel="alternate" hreflang="it" href="https://fridgeup.app/it/" />
+<link rel="alternate" hreflang="de" href="https://fridgeup.app/de/" />
+<link rel="alternate" hreflang="fr" href="https://fridgeup.app/fr/" />
+<link rel="alternate" hreflang="es" href="https://fridgeup.app/es/" />
+<link rel="alternate" hreflang="pt" href="https://fridgeup.app/pt/" />
+<link rel="alternate" hreflang="x-default" href="https://fridgeup.app/" />
+<link rel="icon" href="/assets/icon.jpg" />
+<link rel="apple-touch-icon" href="/assets/icon.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="FridgeUp!" />
+<meta property="og:title" content="FridgeUp! — Suis les dates de péremption, gaspille moins" />
+<meta property="og:description" content="FridgeUp! suit les dates de péremption et te prévient avant que les aliments ne se gâtent. Scanne le code-barres ou photographie la date. Gratuit sur iOS et Android." />
+<meta property="og:image" content="https://fridgeup.app/assets/og-image.jpg" />
+<meta property="og:url" content="https://fridgeup.app/fr/" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="apple-itunes-app" content="app-id=6779924343" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { margin: 0; background: #f6f5fb; -webkit-font-smoothing: antialiased; }
+a { color: #3a3f6b; text-decoration: none; }
+a:hover { color: #1e2140; }
+html { scroll-behavior: smooth; }
+.pill{display:inline-block;padding:6px 12px;border-radius:999px;border:none;background:transparent;color:#6a6f96;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;text-decoration:none}
+.pill.on{background:rgba(255,255,255,.78);color:#1e2140;font-weight:600}
+.pill.on.support{background:#eceaf6}
+.hero-main{width:34%;max-width:400px;overflow:hidden;border-radius:18px;aspect-ratio:1290/2180;filter:drop-shadow(0 30px 60px rgba(30,33,64,.2))}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 36px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:clamp(16px,2.5vw,30px)}
+.tile{margin:0}
+.step-2{margin-left:clamp(16px,5vw,72px)}
+.step-3{margin-left:clamp(32px,10vw,144px)}
+.wide-only{display:contents}
+.hv-op:hover{opacity:.85}
+.hv-btn:hover{background:#2b2f5c!important;color:#fff!important}
+@media (max-width:699px){
+.hero-main{width:100%;max-width:380px;border-radius:16px;filter:drop-shadow(0 24px 50px rgba(30,33,64,.16))}
+.hero-cta{flex-direction:column;flex-wrap:nowrap;gap:20px}
+.gallery{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin:0 calc(-1*clamp(20px,5vw,48px));padding-left:clamp(20px,5vw,48px);padding-right:clamp(20px,5vw,48px)}
+.tile{flex:0 0 62%;scroll-snap-align:start}
+.step-2,.step-3{margin-left:0}
+.wide-only{display:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FridgeUp!",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "iOS, Android",
+  "description": "FridgeUp! suit les dates de péremption et te prévient avant que les aliments ne se gâtent. Scanne le code-barres ou photographie la date. Gratuit sur iOS et Android.",
+  "inLanguage": "fr",
+  "url": "https://fridgeup.app/fr/",
+  "image": "https://fridgeup.app/assets/icon.jpg",
+  "installUrl": [
+    "https://apps.apple.com/app/id6779924343",
+    "https://play.google.com/store/apps/details?id=com.csigillo.fridgeup"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Carmelo Sigilló"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CHF"
+  }
+}
+</script>
+</head>
+<body>
+<div style="font-family: 'Schibsted Grotesk', 'Helvetica Neue', Helvetica, sans-serif; color: #1e2140; background-color: #eef0f9; background-image: radial-gradient(90% 40% at 10% 0%, #b7cdee 0%, rgba(183,205,238,0) 60%), radial-gradient(85% 35% at 95% 6%, #dcc4ea 0%, rgba(220,196,234,0) 62%), radial-gradient(80% 30% at 0% 62%, #cfe0f0 0%, rgba(207,224,240,0) 58%), radial-gradient(90% 34% at 100% 88%, #e0c8ec 0%, rgba(224,200,236,0) 60%), linear-gradient(180deg, #cdd5f0 0%, #ded4ee 18%, #eff0f8 42%, #eaeef8 70%, #e6dff2 100%); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;">
+
+  <div style="max-width: 1180px; margin: 0 auto; padding: 26px clamp(20px, 5vw, 48px) 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+    <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+      <img src="/assets/icon.jpg" alt="FridgeUp!" style="width: 40px; height: 40px; border-radius: 11px; display: block;">
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #1e2140;">FridgeUp!</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); flex-wrap: wrap; font-size: 15px; font-weight: 500;">
+      <a href="#features">Fonctions</a>
+      <a href="#how">Comment ça marche</a>
+      <a href="#pro">Pro</a>
+      <a href="#story">L'histoire</a>
+      <div style="display: flex; align-items: center; gap: 4px; margin-left: 4px;">
+        <a class="pill" href="/" hreflang="en" lang="en">EN</a>
+        <a class="pill" href="/it/" hreflang="it" lang="it">IT</a>
+        <a class="pill" href="/de/" hreflang="de" lang="de">DE</a>
+        <a class="pill on" href="/fr/" hreflang="fr" lang="fr" aria-current="true">FR</a>
+        <a class="pill" href="/es/" hreflang="es" lang="es">ES</a>
+        <a class="pill" href="/pt/" hreflang="pt" lang="pt">PT</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="top" style="padding: clamp(56px, 9vw, 104px) clamp(20px, 5vw, 48px) 64px; overflow: hidden; overflow-x: clip; overflow-y: visible;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <div style="display: inline-flex; align-items: center; gap: 9px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.72); font-size: 13px; font-weight: 500; color: #3a3f6b; margin-bottom: clamp(30px, 3.8vw, 48px);">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #2f9e57;"></span>
+        <span>Disponible sur iOS et Android</span>
+      </div>
+      <h1 style="margin: 0 0 clamp(28px, 3.2vw, 42px); font-size: clamp(38px, 6.2vw, 74px); line-height: 0.99; letter-spacing: -0.04em; font-weight: 700; text-wrap: balance;">Plus de nourriture jetée parce que tu as oublié.</h1>
+      <p style="margin: 0 auto clamp(44px, 5.2vw, 68px); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6; max-width: 33em; color: #4a4f7a; text-wrap: pretty;">FridgeUp! suit les dates de péremption et te prévient avant que les aliments ne se gâtent. Ajoute tes produits en scannant le code-barres ou en photographiant la date.</p>
+      <div class="hero-cta">
+        <a class="hv-op" href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" aria-label="Télécharger dans l'App Store" style="display: inline-block; line-height: 0;">
+          <img src="/assets/appstore-fr.svg" alt="Télécharger dans l'App Store" style="display: block; height: 58px; width: auto;" />
+        </a>
+        <span style="display: inline-flex; align-items: center; padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,0.8); font-size: 16px; font-weight: 700; letter-spacing: -0.01em; color: #1e2140;">Téléchargement gratuit</span>
+        <a class="hv-op" href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;">
+          <img src="/assets/googleplay-fr.svg" alt="Disponible sur Google Play" style="display: block; height: 58px; width: auto;" />
+        </a>
+      </div>
+    </div>
+    <div style="margin: clamp(48px, 7vw, 76px) auto 0; max-width: 1180px; display: flex; justify-content: center; align-items: flex-end; gap: clamp(8px, 2vw, 26px);">
+      <div class="wide-only">
+        <div style="width: 28%; max-width: 320px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; transform: translateY(34px) rotate(-3deg); filter: drop-shadow(0 24px 44px rgba(30,33,64,0.16));">
+          <img src="/assets/shot-scan.jpg" alt="Scan du code-barres et de la date, directement avec l'appareil photo." style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+        </div>
+      </div>
+      <div class="hero-main">
+        <img src="/assets/shot-expiry.jpg" alt="Périmé, bientôt périmé, frais — trié par urgence." style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+      </div>
+      <div class="wide-only">
+        <div style="width: 28%; max-width: 320px; overflow: hidden; border-radius: 18px; aspect-ratio: 1290/2180; transform: translateY(34px) rotate(3deg); filter: drop-shadow(0 24px 44px rgba(30,33,64,0.16));">
+          <img src="/assets/shot-notifications.jpg" alt="Notifications, rappel quotidien, suppression automatique." style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 88%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(48px, 6vw, 72px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 36px;">
+      
+        <li style="display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: #3a3f6b;">
+          <span style="color: #2f9e57; font-weight: 700;">✓</span>
+          <span>Aucun compte requis</span>
+        </li>
+      
+        <li style="display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: #3a3f6b;">
+          <span style="color: #2f9e57; font-weight: 700;">✓</span>
+          <span>Achat unique, sans abonnement</span>
+        </li>
+      
+        <li style="display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: #3a3f6b;">
+          <span style="color: #2f9e57; font-weight: 700;">✓</span>
+          <span>Notifications même hors ligne</span>
+        </li>
+      
+    </ul>
+  </div>
+
+  <div id="features" style="max-width: 1180px; margin: 0 auto; padding: clamp(90px, 12vw, 150px) clamp(20px, 5vw, 48px) 0;">
+    <h2 style="margin: 0 0 14px; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700; max-width: 22em;">Tout ton frigo, avec une date.</h2>
+    <p style="margin: 0 0 clamp(36px, 5vw, 54px); font-size: 18px; line-height: 1.5; color: #4a4f7a; max-width: 34em;">Ajoute un produit une fois et FridgeUp! s'occupe du reste : il le trie par urgence et te le rappelle à temps.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 18px; align-items: stretch;">
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">📷</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Gratuit</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Scan du code-barres et de la date</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">Scanne le code-barres pour le nom, puis photographie la date de péremption. Sans rien taper.</p>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">🔔</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Gratuit</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Des notifications à ta façon</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">Choisis combien de jours à l'avance et à quelle heure. Avec un rappel quotidien en option.</p>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">⚠️</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Gratuit</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Périmé, bientôt périmé, frais</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">La liste se trie toute seule par urgence : tu vois d'un coup d'œil ce qu'il faut consommer.</p>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">☁️</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Gratuit</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Synchro iCloud (iOS), gratuite pour tous</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">Tes listes te suivent sur tous tes appareils. Incluse dans l'app gratuite.</p>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">🗂️</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Pro</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Frigo, congélateur, garde-manger</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">Trois listes séparées, pour que les réserves ne masquent pas ce qui compte cette semaine.</p>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <span style="font-size: 20px; line-height: 1;">🎨</span>
+            <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Pro</span>
+          </div>
+          <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Widget, thèmes, icônes</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">Les dates de péremption sur ton écran d'accueil, cinq thèmes et cinq icônes d'app alternatives.</p>
+        </div>
+      
+      <div style="grid-column: 1 / -1; justify-self: center; box-sizing: border-box; width: 100%; max-width: 380px; background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 26px 24px 28px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <span style="font-size: 20px; line-height: 1;">&#128241;</span>
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Gratuit</span>
+        </div>
+        <h3 style="margin: 0 0 8px; font-size: 19px; letter-spacing: -0.015em; font-weight: 600;">Optimisée aussi pour iPad</h3>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.5; color: #4a4f7a; text-wrap: pretty;">La même app sur iPhone et iPad, avec tes listes synchronisées via iCloud.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="how" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="background: linear-gradient(160deg, #b9cdec 0%, #c6cdf0 45%, #ddc9ec 100%); border-radius: 28px; padding: clamp(38px, 6vw, 68px) clamp(24px, 5vw, 64px);">
+      <h2 style="margin: 0 0 clamp(34px, 5vw, 52px); font-size: clamp(28px, 3.4vw, 42px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">Trois étapes, quelques secondes.</h2>
+      <div style="display: flex; flex-direction: column; gap: clamp(22px, 3vw, 34px);">
+        
+          <div class="step step-1" style="display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 26px);">
+            <div style="flex: none; width: 42px; height: 42px; border-radius: 50%; background: #1e2140; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600;">1</div>
+            <div style="padding-top: 4px;">
+              <h3 style="margin: 0 0 6px; font-size: 21px; letter-spacing: -0.02em; font-weight: 600;">Scanne ou photographie</h3>
+              <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3a3f6b; text-wrap: pretty; max-width: 34em;">Code-barres pour le nom, appareil photo pour la date.</p>
+            </div>
+          </div>
+        
+          <div class="step step-2" style="display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 26px);">
+            <div style="flex: none; width: 42px; height: 42px; border-radius: 50%; background: #1e2140; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600;">2</div>
+            <div style="padding-top: 4px;">
+              <h3 style="margin: 0 0 6px; font-size: 21px; letter-spacing: -0.02em; font-weight: 600;">Dis où il se trouve</h3>
+              <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3a3f6b; text-wrap: pretty; max-width: 34em;">Frigo, congélateur ou garde-manger.</p>
+            </div>
+          </div>
+        
+          <div class="step step-3" style="display: flex; align-items: flex-start; gap: clamp(16px, 2vw, 26px);">
+            <div style="flex: none; width: 42px; height: 42px; border-radius: 50%; background: #1e2140; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600;">3</div>
+            <div style="padding-top: 4px;">
+              <h3 style="margin: 0 0 6px; font-size: 21px; letter-spacing: -0.02em; font-weight: 600;">Sois prévenu à temps</h3>
+              <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #3a3f6b; text-wrap: pretty; max-width: 34em;">Une notification avant la péremption, pas après.</p>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div id="screens" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <h2 style="margin: 0 0 clamp(32px, 4vw, 48px); font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">Un aperçu de l'app</h2>
+    <div class="gallery">
+      <figure class="tile">
+        <img src="/assets/shot-expiry.jpg" alt="Périmé, bientôt périmé, frais — trié par urgence." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Périmé, bientôt périmé, frais — trié par urgence.</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="/assets/shot-scan.jpg" alt="Scan du code-barres et de la date, directement avec l'appareil photo." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Scan du code-barres et de la date, directement avec l'appareil photo.</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="/assets/shot-lists.jpg" alt="Frigo, congélateur et garde-manger en listes séparées (Pro)." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Frigo, congélateur et garde-manger en listes séparées (Pro).</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="/assets/shot-edit.jpg" alt="Modifie le nom, la date ou l'emplacement en quelques secondes." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Modifie le nom, la date ou l'emplacement en quelques secondes.</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="/assets/shot-notifications.jpg" alt="Notifications, rappel quotidien, suppression automatique." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Notifications, rappel quotidien, suppression automatique.</figcaption>
+      </figure>
+      <figure class="tile">
+        <img src="/assets/shot-pro2.jpg" alt="Pro : achat unique, sans abonnement." style="display: block; width: 100%; border-radius: 16px; border: 1px solid #e7e5f0;">
+        <figcaption style="margin-top: 12px; font-size: 14.5px; line-height: 1.45; color: #4a4f7a;">Pro : achat unique, sans abonnement.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div id="pro" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(30px, 5vw, 64px); align-items: center;">
+      <div>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">Pro</span>
+        <h2 style="margin: 12px 0 16px; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">FridgeUp! Pro</h2>
+        <p style="margin: 0 0 26px; font-size: 18px; line-height: 1.5; color: #4a4f7a; max-width: 30em; text-wrap: pretty;">L'app gratuite fait déjà l'essentiel. Pro ajoute des listes séparées et quelques extras pour la personnaliser.</p>
+        <ul style="margin: 0 0 30px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+          
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>Listes séparées : frigo, congélateur, garde-manger</span>
+            </li>
+          
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>Frigo partagé : crée un groupe, la même liste pour tous</span>
+            </li>
+          
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>Widget avec les dates de péremption sur l'écran d'accueil</span>
+            </li>
+          
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>5 thèmes exclusifs</span>
+            </li>
+          
+            <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 16.5px; line-height: 1.45;">
+              <span style="color: #2f9e57; font-weight: 700; line-height: 1.35;">✓</span>
+              <span>5 icônes d'app alternatives</span>
+            </li>
+          
+        </ul>
+        <div style="display: inline-flex; align-items: baseline; gap: 10px; background: #eceaf6; border-radius: 14px; padding: 14px 20px;">
+          <span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">CHF 3.00 · €2.99</span>
+          <span style="font-size: 14px; color: #4a4f7a; font-weight: 500;">achat unique, sans abonnement</span>
+        </div>
+      </div>
+      <img src="/assets/shot-pro2.jpg" alt="FridgeUp! Pro" style="display: block; width: 100%; max-width: 380px; margin: 0 auto; border-radius: 16px; filter: drop-shadow(0 24px 50px rgba(30,33,64,0.16));">
+    </div>
+  </div>
+
+  <div id="reviews" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: clamp(28px, 4vw, 40px);">
+      <h2 style="margin: 0; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">Ce qu'en disent les utilisateurs</h2>
+      <span style="font-size: 14.5px; color: #6a6f96;">Avis de l'App Store, dans la langue d'origine</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px;">
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★★</span>
+            <span style="font-size: 13px; color: #6a6f96;">LFischer! · 8 Jul</span>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Pratique, claire et vraiment utile !</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Cette app est une excellente idée, très bien réalisée. Elle est simple à utiliser, bien organisée et aide à mieux gérer la nourriture en évitant le gaspillage inutile. Les rappels pour les produits qui arrivent à péremption sont particulièrement pratiques au quotidien. On sent que beaucoup de travail et de passion y ont été investis. J'attends avec impatience les prochaines mises à jour et je la recommande à tout le monde !</p>
+          
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">Traduit de l'allemand</p>
+          
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★☆</span>
+            <span style="font-size: 13px; color: #6a6f96;">Janini.bini · 11 Aug</span>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Super !</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Facile à utiliser ! Super fonction de scan. Une suggestion d'amélioration : le partage familial :)</p>
+          
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">Traduit de l'allemand</p>
+          
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★★</span>
+            <span style="font-size: 13px; color: #6a6f96;">Skizzetta68 · 17 lug</span>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Wow</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Superbe app ! Elle fait vraiment bien son travail. Le design est très beau, épuré et intuitif, et elle s'utilise sans difficulté. Elle m'a plu dès la première utilisation.</p>
+          
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">Traduit de l'italien</p>
+          
+        </div>
+      
+        <div style="background: #fff; border: 1px solid #e7e5f0; border-radius: 20px; padding: 28px 26px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+            <span style="color: #e8901a; font-size: 16px; letter-spacing: 3px;">★★★★★</span>
+            <span style="font-size: 13px; color: #6a6f96;">Terence Lionel · 8 set</span>
+          </div>
+          <h3 style="margin: 0 0 12px; font-size: 18px; letter-spacing: -0.015em; font-weight: 600;">Une app fantastique</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #4a4f7a; text-wrap: pretty;">Une app fantastique — depuis que je l'utilise, je n'ai plus jeté aucun aliment ! Je la recommande vivement.</p>
+          
+            <p style="margin: 12px 0 0; font-size: 13px; color: #8a8fae;">Traduit de l'italien</p>
+          
+        </div>
+      
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(70px, 9vw, 110px) auto 0; padding: 0 clamp(20px, 5vw, 48px); text-align: center;">
+    <h2 style="margin: 0 0 28px; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 700;">Prêt à gaspiller moins ?</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 24px;">
+      <a class="hv-op" href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" style="display: inline-block; line-height: 0;">
+        <img src="/assets/appstore-fr.svg" alt="Télécharger dans l'App Store" style="display: block; height: 58px; width: auto;" />
+      </a>
+      <a class="hv-op" href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;">
+        <img src="/assets/googleplay-fr.svg" alt="Disponible sur Google Play" style="display: block; height: 58px; width: auto;" />
+      </a>
+    </div>
+    <div class="wide-only">
+      <div style="margin-top: 60px; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;">
+        <img src="/assets/qr-get.png" alt="Scanne avec ton téléphone" style="display: block; width: 150px; height: 150px; border-radius: 14px; background: #fff;" />
+        <span style="font-size: 14px; font-weight: 600; color: #4a4f7a;">Scanne avec ton téléphone</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="story" style="max-width: 1180px; margin: clamp(90px, 12vw, 150px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="background: #f4f2fa; border-radius: 28px; padding: clamp(38px, 6vw, 72px) clamp(24px, 5vw, 64px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start;">
+      <div>
+        <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: #6f56a0;">L'histoire</span>
+        <h2 style="margin: 12px 0 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 700;">Une personne, un frigo plein d'aliments périmés</h2>
+      </div>
+      <p style="margin: 0; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #3a3f6b; text-wrap: pretty;">Je m'appelle Carmelo. FridgeUp! est né d'un frigo plein d'aliments oubliés et périmés — une fois de plus, j'avais jeté de la nourriture parce que je ne m'en étais pas aperçu à temps. Je ne suis pas programmeur de métier : j'ai appris Swift en écrivant cette app pendant mon temps libre, avec l'aide de l'IA. Pas d'équipe, pas d'entreprise : juste moi, qui voulais résoudre un problème qui était le mien.</p>
+    </div>
+  </div>
+
+  <div style="max-width: 1180px; margin: clamp(90px, 12vw, 140px) auto 0; padding: 0 clamp(20px, 5vw, 48px);">
+    <div style="border: 1px dashed #cdc8e0; border-radius: 24px; padding: clamp(30px, 4vw, 46px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+      <div>
+        <h2 style="margin: 0 0 8px; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.025em; font-weight: 700;">FridgeUp! existe sur iOS et Android</h2>
+        <p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #4a4f7a; max-width: 34em;">Télécharge-la sur l'App Store ou Google Play. Une question ? Écris-moi à l'adresse de ta version.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px;">
+        <a class="hv-op" href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" style="display: inline-block; line-height: 0;">
+          <img src="/assets/appstore-fr.svg" alt="Télécharger dans l'App Store" style="display: block; height: 58px; width: auto;" />
+        </a>
+        <a class="hv-op" href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" style="display: inline-block; line-height: 0;">
+          <img src="/assets/googleplay-fr.svg" alt="Disponible sur Google Play" style="display: block; height: 58px; width: auto;" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: clamp(90px, 12vw, 140px) 0 0; border-top: 1px solid #e2e0ee;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(40px, 5vw, 60px) clamp(20px, 5vw, 48px) 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 11px; margin-bottom: 12px;">
+          <img src="/assets/icon.jpg" alt="FridgeUp!" style="width: 32px; height: 32px; border-radius: 9px; display: block;">
+          <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em;">FridgeUp!</span>
+        </div>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: #6a6f96;">Suis les dates de péremption, gaspille moins.</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">Contact</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+          <a href="mailto:fridgeup.ios@gmail.com">iOS — fridgeup.ios@gmail.com</a>
+          <a href="mailto:fridgeup.android@gmail.com">Android — fridgeup.android@gmail.com</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">Liens</h3>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px;">
+          <a href="/fr/support/">Assistance</a>
+          <a href="https://csigillo-ux.github.io/fridgeup-privacy/" target="_blank" rel="noopener">Politique de confidentialité</a>
+          <a href="https://apps.apple.com/ch/app/fridgeup/id6779924343?l=en-GB" target="_blank" rel="noopener">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.csigillo.fridgeup" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6f96;">Écris-moi</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <a class="hv-btn" href="mailto:fridgeup.ios@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #1e2140; color: #fff; border-radius: 12px; padding: 11px 18px; font-size: 15px; font-weight: 600;">Envoyer un e-mail · iOS</a>
+          <a class="hv-btn" href="mailto:fridgeup.android@gmail.com" style="display: inline-flex; align-items: center; gap: 8px; background: #1e2140; color: #fff; border-radius: 12px; padding: 11px 18px; font-size: 15px; font-weight: 600;">Envoyer un e-mail · Android</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px) 40px; font-size: 13.5px; color: #6a6f96;">© 2026 Carmelo Sigilló · Bülach (Schweiz)</div>
+  </div>
+</div>
+</body>
+</html>
