@@ -361,6 +361,7 @@ ${urls.join("\n")}
 
 write("robots.txt", `User-agent: *
 Allow: /
+Disallow: /get/
 
 Sitemap: ${SITE}/sitemap.xml
 `);
