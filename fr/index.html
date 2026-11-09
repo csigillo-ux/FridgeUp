@@ -44,6 +44,10 @@ html { scroll-behavior: smooth; }
 .wide-only{display:contents}
 .hv-op:hover{opacity:.85}
 .hv-btn:hover{background:#2b2f5c!important;color:#fff!important}
+@media (min-width:1100px){
+.gallery{display:flex;flex-wrap:wrap;justify-content:center}
+.tile{flex:0 0 calc((100% - 3*clamp(16px,2.5vw,30px))/4);min-width:0}
+}
 @media (max-width:699px){
 .hero-main{width:100%;max-width:380px;border-radius:16px;filter:drop-shadow(0 24px 50px rgba(30,33,64,.16))}
 .hero-cta{flex-direction:column;flex-wrap:nowrap;gap:20px}

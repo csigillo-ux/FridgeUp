@@ -643,6 +643,8 @@ class Component extends DCLogic {
     this._onResize = () => {
       const narrow = window.innerWidth < 700;
       if (narrow !== this.state.narrow) this.setState({ narrow });
+      const four = window.innerWidth >= 1100;
+      if (four !== this.state.four) this.setState({ four });
     };
     this._onResize();
     window.addEventListener("resize", this._onResize);
@@ -683,10 +685,14 @@ class Component extends DCLogic {
         : "display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px 36px;",
       galleryStyle: this.state.narrow
         ? "display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin: 0 calc(-1 * clamp(20px, 5vw, 48px)); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);"
-        : "display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: clamp(16px, 2.5vw, 30px);",
+        : (this.state.four
+          ? "display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(16px, 2.5vw, 30px);"
+          : "display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: clamp(16px, 2.5vw, 30px);"),
       tileStyle: this.state.narrow
         ? "margin: 0; flex: 0 0 62%; scroll-snap-align: start;"
-        : "margin: 0;",
+        : (this.state.four
+          ? "margin: 0; flex: 0 0 calc((100% - 3 * clamp(16px, 2.5vw, 30px)) / 4); min-width: 0;"
+          : "margin: 0;"),
       badgeApple: "assets/appstore-" + (S[lang] ? lang : "en") + ".svg",
       badgeGoogle: "assets/googleplay-" + (S[lang] ? lang : "en") + ".svg",
       features: (this.props.showProFeatures === false) ? t.features.filter(f => f.tag !== "Pro") : t.features,
